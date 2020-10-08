@@ -18,61 +18,25 @@ layout = html.Div([
                     html.Br(),
 
                     dbc.Row(
-                        html.A(
-                            dbc.Button(
-                                'JOIN A GAME', 
-                                id="join_game_button",
-                                color="success", 
-                                className="mr-1",
-                            ),
+                        dbc.Button(
+                            'JOIN A GAME OR CREATE YOUR OWN', 
+                            id="join_game_button",
+                            color="primary", 
+                            block=True,
                             href="/join_game",
                         ),
-                        justify='center'
                     ),
 
                     html.Br(),
 
                     dbc.Row(
-                        html.A(
-                            dbc.Button(
-                                'BORROW A GAME NOW', 
-                                id="borrow_game_now_button",
-                                color="success", 
-                                className="mr-1",
-                            ),
+                        dbc.Button(
+                            'BUY/RENT/EXCHANGE A GAME', 
+                            id="borrow_game_now_button",
+                            color="primary", 
+                            block=True,
                             href="/join_game",
                         ),
-                        justify='center'
-                    ),
-
-                    html.Br(),
-
-                    dbc.Row(
-                        html.A(
-                            dbc.Button(
-                                'BORROW A GAME LATER', 
-                                id="borrow_game_later_button",
-                                color="success", 
-                                className="mr-1",
-                            ),
-                            href="/join_game",
-                        ),
-                        justify='center'
-                    ),
-
-                    html.Br(),
-
-                    dbc.Row(
-                        html.A(
-                            dbc.Button(
-                                'SHARE YOUR GAMES', 
-                                id="share_games_button",
-                                color="success", 
-                                className="mr-1",
-                            ),
-                            href="/join_game",
-                        ),
-                        justify='center'
                     ),
 
                     html.Br(),
