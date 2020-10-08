@@ -29,7 +29,7 @@ app.config.suppress_callback_exceptions = True
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
-    html.Div([context_menu.layout]),
+    # html.Div([context_menu.layout]),
     html.Div(id='page-content'),
 ])
 
