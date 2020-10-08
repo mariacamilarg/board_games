@@ -2,6 +2,27 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 
 layout = html.Div([
+
+dbc.Navbar(
+        [
+            dbc.Col(
+                dbc.Row(
+                    # html.A(
+                    # dbc.CardImg(src="/assets/images/logo.png", ),
+
+                    html.H1("COME AND PLAY", className="text-light"),
+                    # href="/large",
+                    # ),
+                    justify="center",
+                )
+            ),
+
+        ],
+        color="blue",
+        dark=True,
+    ),
+
+
     dbc.Row(
         children=[
             dbc.Col(
@@ -11,7 +32,7 @@ layout = html.Div([
                 children=[
                     html.Br(),
                     dbc.Row(
-                        html.H1("What do you want to do?")
+                        html.H3("What do you want to do?")
                     ),
 
                     html.Br(),
