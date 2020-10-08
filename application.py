@@ -54,6 +54,8 @@ def display_page(pathname):
         return join_game.layout
     elif pathname == '/buy_sell_rent':
         return buy_sell_rent.layout
+    elif pathname == '/buy_game':
+        return buy_game.layout
     # elif pathname == '/large':
     #     return large_screen.layout
     else:
