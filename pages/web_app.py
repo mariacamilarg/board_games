@@ -35,42 +35,12 @@ layout = html.Div([
                     dbc.Row(
                         html.A(
                             dbc.Button(
-                                'BORROW A GAME NOW', 
-                                id="borrow_game_now_button",
+                                'BUY, SELL, RENT OR EXCHANGE A GAME',
+                                id="buy_sell_rent_button",
                                 color="success", 
                                 className="mr-1",
                             ),
-                            href="/join_game",
-                        ),
-                        justify='center'
-                    ),
-
-                    html.Br(),
-
-                    dbc.Row(
-                        html.A(
-                            dbc.Button(
-                                'BORROW A GAME LATER', 
-                                id="borrow_game_later_button",
-                                color="success", 
-                                className="mr-1",
-                            ),
-                            href="/join_game",
-                        ),
-                        justify='center'
-                    ),
-
-                    html.Br(),
-
-                    dbc.Row(
-                        html.A(
-                            dbc.Button(
-                                'SHARE YOUR GAMES', 
-                                id="share_games_button",
-                                color="success", 
-                                className="mr-1",
-                            ),
-                            href="/join_game",
+                            href="/buy_sell_rent",
                         ),
                         justify='center'
                     ),

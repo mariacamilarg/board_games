@@ -15,12 +15,14 @@ from dash.dependencies import Input, Output, State
 
 from backend import database
 from widgets import context_menu, table#, campus_map
-from pages import web_app, join_game#, large_screen, visor
+from pages import web_app, buy_sell_rent, join_game  # , large_screen, visor
 
 
 # APP DEFINITION
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], meta_tags=[
+        {"name": "viewport", "content": "width=device-width, initial-scale=1"}
+    ])
 application = app.server
 
 # We need this for function callbacks not present in the app.layout
@@ -50,6 +52,8 @@ def display_page(pathname):
         return web_app.layout
     elif pathname == '/join_game':
         return join_game.layout
+    elif pathname == '/buy_sell_rent':
+        return buy_sell_rent.layout
     # elif pathname == '/large':
     #     return large_screen.layout
     else:
