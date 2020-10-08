@@ -15,7 +15,7 @@ from dash.dependencies import Input, Output, State
 
 from backend import database
 from widgets import context_menu, table#, campus_map
-from pages import web_app, buy_sell_rent, join_game, buy_game  # , large_screen, visor
+from pages import web_app, buy_sell_rent, join_game, buy_game, contact_seller  # , large_screen, visor
 
 
 # APP DEFINITION
@@ -56,6 +56,8 @@ def display_page(pathname):
         return buy_sell_rent.layout
     elif pathname == '/buy_game':
         return buy_game.layout
+    elif pathname == '/contact_seller':
+        return contact_seller.layout
     # elif pathname == '/large':
     #     return large_screen.layout
     else:

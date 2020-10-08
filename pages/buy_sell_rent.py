@@ -63,6 +63,31 @@ layout = html.Div([
         dark=True,
     ),
 
+    # dbc.Row(
+    #     children=[
+    #         dbc.Col(
+    #             width=1
+    #         ),
+    #         dbc.Col(
+    #             children=[
+    #
+    #                 html.Br(),
+    #
+    #                 # title
+    #                 dbc.Row(
+    #                     html.H3("BUY SELL RENT EXCHANGE")
+    #                     , justify="center"
+    #                 ),
+    #
+    #                 html.Br(),
+    #             ]
+    #         ),
+    #         dbc.Col(
+    #             width=1
+    #         ),
+    #     ]
+    # ),
+
     dbc.Row(
         children=[
             dbc.Col(
@@ -72,31 +97,6 @@ layout = html.Div([
                 children=[
 
                     html.Br(),
-
-                    # title
-                    dbc.Row(
-                        html.H3("BUY SELL RENT EXCHANGE")
-                        , justify="center"
-                    ),
-
-                    html.Br(),
-                ]
-            ),
-            dbc.Col(
-                width=1
-            ),
-        ]
-    ),
-
-    dbc.Row(
-        children=[
-            dbc.Col(
-                width=1
-            ),
-            dbc.Col(
-                children=[
-
-                    # html.Br(),
 
                     # title
                     # dbc.Row(
