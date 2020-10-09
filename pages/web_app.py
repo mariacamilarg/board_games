@@ -32,37 +32,36 @@ dbc.Navbar(
                 children=[
                     html.Br(),
                     dbc.Row(
-                        html.H3("What do you want to do?")
+                        html.H3("What do you want to do?"),
+                    justify="center"
                     ),
 
                     html.Br(),
                     html.Br(),
 
                     dbc.Row(
-                        html.A(
                             dbc.Button(
                                 'JOIN A GAME', 
                                 id="join_game_button",
-                                color="success", 
+                                color="primary",
                                 className="mr-1",
-                            ),
                             href="/join_game",
-                        ),
+                                block=True
+                            ),
                         justify='center'
                     ),
 
                     html.Br(),
 
                     dbc.Row(
-                        html.A(
                             dbc.Button(
                                 'BUY, SELL, RENT OR EXCHANGE A GAME',
                                 id="buy_sell_rent_button",
-                                color="success", 
+                                color="primary",
                                 className="mr-1",
-                            ),
                             href="/buy_sell_rent",
-                        ),
+                                block=True
+                            ),
                         justify='center'
                     ),
 

@@ -1,3 +1,11 @@
 .navbar-brand {
     margin-right: 0
 }
+
+.padding-right-small{
+    padding-right: 1rem;
+}
+
+.padding-small{
+    padding: 0.7rem;
+}
