@@ -12,7 +12,7 @@ import dash_html_components as html
 
 from dash.dependencies import Input, Output
 from dash.dependencies import Input, Output, State
-
+import csv
 from backend import database
 
 from widgets import context_menu, get_data_from_db, table, campus_map
@@ -121,6 +121,36 @@ def join_game_data(url):
 
     return map_fig, games_table_columns, games_table
 
+
+# ## ADD to CSV
+# @app.callback(
+#     [
+#         Output('something', 'figure'),
+#         Output('something2', 'figure'),
+#         Output('something3', 'figure'),
+#         Output('something4', 'figure'),
+#     ],
+#     [
+#         Input('url', 'pathname'),
+#         # Input('join_game_button', 'n_clicks')
+#     ]
+# )
+#
+# def add_to_csv(url):
+#
+#     if url != '/buy_sell_rent':
+#         raise dash.exceptions.PreventUpdate()
+#
+#     with open('./assets/csv/buy_sell.csv', 'a') as fd:
+#         name= "catannn"
+#         price = "25€"
+#         img= "catan.jpg"
+#         description="desc"
+#         new_row = [name, price, img, description]
+#         writer = csv.writer(fd)
+#         writer.writerow(new_row)
+#         print(fd)
+#     return new_row
 
 # BUY SELL RENT EXCHANGE
 @app.callback(

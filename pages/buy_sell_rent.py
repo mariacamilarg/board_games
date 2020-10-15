@@ -178,8 +178,10 @@ layout = html.Div([
                                             # dbc.Row(
                                             html.Div(
                                                 [
-                                                    html.H3(["BUY Catan"]),
-                                                    html.H4(["20€"]),
+                                                    html.H3(["BUY Catan"], id="something"),
+                                                    html.H4(["20€"], id="something2"),
+                                                    html.H4(["20€"], id="something3"),
+                                                    html.H4(["20€"], id="something4"),
                                                 ]),
                                             # justify="center", className="px-1"
                                             # ),
