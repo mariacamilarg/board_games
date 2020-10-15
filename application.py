@@ -14,14 +14,19 @@ from dash.dependencies import Input, Output
 from dash.dependencies import Input, Output, State
 
 from backend import database
-from widgets import context_menu, get_data_from_db, table  # , campus_map
+
+from widgets import context_menu, get_data_from_db, table, campus_map
 from pages import web_app, buy_sell_rent, join_game, buy_game, contact_seller, sell_game, rent_out_game, exchange_game
 
 # APP DEFINITION
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], meta_tags=[
-    {"name": "viewport", "content": "width=device-width, initial-scale=1"}
-])
+app = dash.Dash(
+    __name__, 
+    external_stylesheets=[dbc.themes.BOOTSTRAP], 
+    meta_tags=[
+        {"name": "viewport", "content": "width=device-width, initial-scale=1"}
+    ]
+)
 application = app.server
 
 # We need this for function callbacks not present in the app.layout
@@ -67,8 +72,7 @@ def display_page(pathname):
     else:
         return '404'
 
-
-## Join Games Page
+## Games DB
 @app.callback(
     [
         Output('all_games_table', 'columns'),
@@ -85,12 +89,37 @@ def display_page(pathname):
 def update_all_games(n_clicks):
     print('Updating data table views\n')
 
-    if n_clicks != '/join_game':
+    if n_clicks != '/games_db':
         raise dash.exceptions.PreventUpdate()
 
     columns, data = table.parse_table(db.get_all_board_games())
 
     return columns, data
+
+## Join Games Page
+@app.callback(
+    [
+        Output('campus_map', 'figure'),
+        Output('join_games_table', 'columns'),
+        Output('join_games_table', 'data'),
+    ],
+    [
+        Input('url', 'pathname'),
+        #Input('join_game_button', 'n_clicks')
+    ],
+    [
+        
+    ]
+)
+def join_game_data(url):
+    
+    if url != '/join_game':
+        raise dash.exceptions.PreventUpdate()
+
+    map_fig, games_table = campus_map.get_data(db)
+    games_table_columns = [{"name": i, "id": i} for i in games_table[0].keys()]
+
+    return map_fig, games_table_columns, games_table
 
 
 # BUY SELL RENT EXCHANGE

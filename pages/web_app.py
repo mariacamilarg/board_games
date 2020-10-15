@@ -40,29 +40,26 @@ dbc.Navbar(
                     html.Br(),
 
                     dbc.Row(
-                            dbc.Button(
-                                'JOIN A GAME', 
-                                id="join_game_button",
-                                color="primary",
-                                className="mr-1",
+                        dbc.Button(
+                            'JOIN A GAME OR CREATE YOUR OWN', 
+                            id="join_game_button",
+                            color="primary", 
+                            block=True,
                             href="/join_game",
-                                block=True
-                            ),
-                        justify='center'
+                        ),
                     ),
 
                     html.Br(),
 
                     dbc.Row(
-                            dbc.Button(
-                                'BUY, SELL, RENT OR EXCHANGE A GAME',
-                                id="buy_sell_rent_button",
-                                color="primary",
-                                className="mr-1",
+                        dbc.Button(
+                            'BUY, SELL, RENT OR EXCHANGE A GAME',
+                            id="buy_sell_rent_button",
+                            color="primary",
+                            className="mr-1",
                             href="/buy_sell_rent",
-                                block=True
-                            ),
-                        justify='center'
+                            block=True
+                        ),
                     ),
 
                     html.Br(),

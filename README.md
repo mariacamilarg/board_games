@@ -14,3 +14,7 @@ For starting just run
 ````sh
 python application.py
 ````
+
+## External data sources
+* BBG Kaggle Data: https://www.kaggle.com/mrpantherson/board-game-data?select=bgg_db_2018_01.csv
+* BGG API: https://boardgamegeek.com/wiki/page/BGG_XML_API
