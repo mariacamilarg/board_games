@@ -15,7 +15,7 @@ from dash.dependencies import Input, Output, State
 
 from backend import database
 
-from widgets import context_menu, get_data_from_db, table  # , campus_map
+from widgets import context_menu, get_data_from_db, table, campus_map
 from pages import web_app, buy_sell_rent, join_game, buy_game, contact_seller, sell_game, rent_out_game, exchange_game
 
 # APP DEFINITION
