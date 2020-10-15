@@ -15,8 +15,9 @@ from dash.dependencies import Input, Output, State
 import csv
 from backend import database
 
-from widgets import context_menu, get_data_from_db, table, campus_map, parse_url
-from pages import web_app, buy_sell_rent, join_game, buy_game, rent_game, contact_renter, contact_exchange, see_exchange_game, contact_seller, sell_game, rent_out_game, exchange_game
+from widgets import context_menu, get_data_from_db, table, campus_map, parse_url, manage_csv_rows
+from pages import web_app, buy_sell_rent, join_game, buy_game, rent_game, contact_renter, contact_exchange, \
+    see_exchange_game, contact_seller, sell_game, rent_out_game, exchange_game
 
 # APP DEFINITION
 
@@ -164,7 +165,7 @@ def add_to_card(url):
     i = 0
     while i < number_of_rows:
         my_list.append(get_data_from_db.get_name()[i])
-        my_list.append(get_data_from_db.get_price()[i]),
+        my_list.append(str(get_data_from_db.get_price()[i]) + " €"),
         my_list.append("/assets/images/" + get_data_from_db.get_img()[i])
         i += 1
 
@@ -176,6 +177,7 @@ def add_to_card(url):
         number_of_rows += 1
 
     return my_list
+
 
 ## BUY page
 @app.callback(
@@ -200,13 +202,14 @@ def display_info(url, search_str):
     print(my_id)
 
     my_list = []
-    my_list.append(get_data_from_db.get_name()[int(my_id)-1])
-    my_list.append(get_data_from_db.get_price()[int(my_id)-1]),
-    my_list.append(get_data_from_db.get_description()[int(my_id)-1]),
-    my_list.append("/assets/images/" + get_data_from_db.get_img()[int(my_id)-1])
-    my_list.append("/contact_seller?id="+my_id)
+    my_list.append(get_data_from_db.get_name()[int(my_id) - 1])
+    my_list.append(get_data_from_db.get_price()[int(my_id) - 1] + " €"),
+    my_list.append(get_data_from_db.get_description()[int(my_id) - 1]),
+    my_list.append("/assets/images/" + get_data_from_db.get_img()[int(my_id) - 1])
+    my_list.append("/contact_seller?id=" + my_id)
 
     return my_list
+
 
 ## SELLER page
 @app.callback(
@@ -224,9 +227,10 @@ def display_info(url, search_str):
     print(my_id)
 
     my_list = []
-    my_list.append("/buy_game?id="+my_id)
+    my_list.append("/buy_game?id=" + my_id)
 
     return my_list
+
 
 ########################################################################
 ## PUT DATA IN RENT
@@ -262,7 +266,7 @@ def add_to_card(url):
     i = 0
     while i < number_of_rows:
         my_list.append(get_data_from_db.rent_get_name()[i])
-        my_list.append(get_data_from_db.rent_get_price()[i]),
+        my_list.append(str(get_data_from_db.rent_get_price()[i]) + " € "+str(get_data_from_db.rent_get_time()[i])),
         my_list.append("/assets/images/" + get_data_from_db.rent_get_img()[i])
         i += 1
 
@@ -274,6 +278,7 @@ def add_to_card(url):
         number_of_rows += 1
 
     return my_list
+
 
 ## RENT page
 @app.callback(
@@ -298,13 +303,14 @@ def display_info(url, search_str):
     print(my_id)
 
     my_list = []
-    my_list.append(get_data_from_db.rent_get_name()[int(my_id)-1])
-    my_list.append(get_data_from_db.rent_get_price()[int(my_id)-1]),
-    my_list.append(get_data_from_db.rent_get_description()[int(my_id)-1]),
-    my_list.append("/assets/images/" + get_data_from_db.rent_get_img()[int(my_id)-1])
-    my_list.append("/contact_renter?id="+my_id)
+    my_list.append(get_data_from_db.rent_get_name()[int(my_id) - 1])
+    my_list.append(get_data_from_db.rent_get_price()[int(my_id) - 1] + " €"),
+    my_list.append(get_data_from_db.rent_get_description()[int(my_id) - 1]),
+    my_list.append("/assets/images/" + get_data_from_db.rent_get_img()[int(my_id) - 1])
+    my_list.append("/contact_renter?id=" + my_id)
 
     return my_list
+
 
 ## RENTER page
 @app.callback(
@@ -322,9 +328,10 @@ def display_info(url, search_str):
     print(my_id)
 
     my_list = []
-    my_list.append("/rent_game?id="+my_id)
+    my_list.append("/rent_game?id=" + my_id)
 
     return my_list
+
 
 ########################################################################
 ## PUT DATA IN EXCHANGE
@@ -359,8 +366,8 @@ def add_to_card(url):
 
     i = 0
     while i < number_of_rows:
-        my_list.append(get_data_from_db.exchange_get_wanted()[i])
-        my_list.append(get_data_from_db.exchange_get_offered()[i]),
+        my_list.append("WANTS " + get_data_from_db.exchange_get_wanted()[i])
+        my_list.append("OFFERS " + get_data_from_db.exchange_get_offered()[i]),
         my_list.append("/assets/images/" + get_data_from_db.exchange_get_img()[i])
         i += 1
 
@@ -372,6 +379,7 @@ def add_to_card(url):
         number_of_rows += 1
 
     return my_list
+
 
 ## SEE EXCHANGE page
 @app.callback(
@@ -397,13 +405,14 @@ def display_info(url, search_str):
     print(my_id)
 
     my_list = []
-    my_list.append(get_data_from_db.exchange_get_wanted()[int(my_id)-1])
-    my_list.append(get_data_from_db.exchange_get_offered()[int(my_id)-1]),
-    my_list.append(get_data_from_db.exchange_get_description()[int(my_id)-1]),
-    my_list.append("/assets/images/" + get_data_from_db.exchange_get_img()[int(my_id)-1])
-    my_list.append("/contact_exchange?id="+my_id)
+    my_list.append("WANTS " + get_data_from_db.exchange_get_wanted()[int(my_id) - 1])
+    my_list.append("OFFERS " + get_data_from_db.exchange_get_offered()[int(my_id) - 1]),
+    my_list.append(get_data_from_db.exchange_get_description()[int(my_id) - 1]),
+    my_list.append("/assets/images/" + get_data_from_db.exchange_get_img()[int(my_id) - 1])
+    my_list.append("/contact_exchange?id=" + my_id)
 
     return my_list
+
 
 ## EXCHANGER page
 @app.callback(
@@ -422,7 +431,7 @@ def display_info(url, search_str):
     print(my_id)
 
     my_list = []
-    my_list.append("/see_exchange_game?id="+my_id)
+    my_list.append("/see_exchange_game?id=" + my_id)
 
     return my_list
 
@@ -442,6 +451,68 @@ def display_info(url, search_str):
 #         writer.writerow(new_row)
 #         print(fd)
 #     return new_row
+
+#################
+## SELL GAME
+@app.callback(
+    dash.dependencies.Output('container-button-basic', 'children'),
+    [dash.dependencies.Input('sell_button', 'n_clicks')],
+    [dash.dependencies.State('sell_game_name', 'value'),
+     dash.dependencies.State('sell_game_price', 'value'),
+     dash.dependencies.State('sell_game_img', 'value'),
+     ])
+def update_output(n_clicks, value_name, value_price, value_img):
+    if value_name is not None and value_price is not None and value_img is not None:
+        row_contents = [value_name, value_price, "catan.jpg"]
+        # Append a list as new line to an old csv file
+        manage_csv_rows.append_list_as_row('./assets/csv/buy_sell.csv', row_contents)
+
+        return 'Thank you! We have added the game to the relative section.'
+
+    return " "
+
+#################
+## RENT GAME
+@app.callback(
+    dash.dependencies.Output('rent_container-button-basic', 'children'),
+    [dash.dependencies.Input('rent_button', 'n_clicks')],
+    [dash.dependencies.State('rent_game_name', 'value'),
+     dash.dependencies.State('rent_game_price', 'value'),
+     dash.dependencies.State('rent_game_time', 'value'),
+     # dash.dependencies.State('rent_game_img', 'value'),
+     ])
+def update_output(n_clicks, value_name, value_price, value_time):
+    if value_name is not None and value_price is not None and value_time is not None:
+        row_contents = [value_name, value_price, value_time, "catan.jpg"]
+        # Append a list as new line to an old csv file
+        manage_csv_rows.append_list_as_row('./assets/csv/rent_rent_out.csv', row_contents)
+
+        return 'Thank you! We have added the game to the relative section.'
+
+    return " "
+
+###########
+## EXCHANGE GAME
+@app.callback(
+    dash.dependencies.Output('exchange_container-button-basic', 'children'),
+    [dash.dependencies.Input('exchange_button', 'n_clicks')],
+    [dash.dependencies.State('exchange_game_name', 'value'),
+     dash.dependencies.State('exchange_game_name2', 'value'),
+     # dash.dependencies.State('exchange_game_img', 'value'),
+     ])
+def update_output_exchange(n_clicks, value_name, value_name2):
+    if value_name is not None and value_name2 is not None:
+        row_contents = [value_name, value_name2, "catan.jpg"]
+        # Append a list as new line to an old csv file
+        manage_csv_rows.append_list_as_row('./assets/csv/exchange.csv', row_contents)
+
+        return 'Thank you! We have added the game to the relative section.'        \
+               ' The input value was "{}, {}" and the button has been clicked {} times'.format(
+            value_name, value_name2,
+            n_clicks
+        )
+    return " "
+
 
 # BUY SELL RENT EXCHANGE
 @app.callback(

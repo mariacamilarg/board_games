@@ -6,18 +6,18 @@ import pandas as pd
 
 name_input = dbc.FormGroup(
     [
-        dbc.Label("Name of the game", html_for="game_name"),
-        dbc.Input(type="text", id="game_name", placeholder="Enter the name of the game", ),
+        dbc.Label("Name of the game", html_for="sell_game_name"),
+        dbc.Input(id='sell_game_name', type='text', placeholder="Enter the name of the game", ),
 
     ]
 )
 
 price_input = dbc.FormGroup(
     [
-        dbc.Label("Price", html_for="game_price"),
+        dbc.Label("Price in euro", html_for="sell_game_price"),
         dbc.Input(
             type="number",
-            id="game_price",
+            id="sell_game_price",
             placeholder="Enter the price",
         ),
     ]
@@ -25,10 +25,10 @@ price_input = dbc.FormGroup(
 
 image_input = dbc.FormGroup(
     [
-        dbc.Label("Image", html_for="game_image"),
+        dbc.Label("Image", html_for="sell_game_img"),
         dbc.Input(
             type="file",
-            id="game_image",
+            id="sell_game_img",
             placeholder="Select an image",
         ),
     ]
@@ -91,7 +91,10 @@ layout = html.Div([
                     html.Br(),
 
                     dbc.Form([name_input, price_input, image_input, html.Br(),
-                              dbc.Button("Sell the game", color="primary", block=True), ]),
+                              dbc.Button("Sell the game", id="sell_button", n_clicks=0, color="primary", block=True, ), ]),
+
+                    html.Div(id='container-button-basic',
+                             children='Enter a value and press submit'),
                     html.Br(),
                     html.Br(),
                 ]
@@ -101,4 +104,8 @@ layout = html.Div([
             ),
         ]
     ),
+
+
+
+
 ])

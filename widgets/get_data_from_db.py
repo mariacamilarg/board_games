@@ -36,6 +36,10 @@ def rent_get_price():
     df = pd.read_csv("./assets/csv/rent_rent_out.csv")
     return df.PRICE
 
+def rent_get_time():
+    df = pd.read_csv("./assets/csv/rent_rent_out.csv")
+    return df.TIME
+
 
 def rent_get_name():
     df = pd.read_csv("./assets/csv/rent_rent_out.csv")

@@ -1,5 +1,5 @@
-NAME,PRICE,IMG,DESCRIPTION
-"UNO","2€ per day","uno.jpg","a description"
-"SETTLERS OF CATAN","5€ per day","catan.jpg","another description"
-
-
+NAME,PRICE,TIME,IMG,DESCRIPTION
+"UNO","2","per day","uno.jpg","a description"
+"SETTLERS OF CATAN","5","per day","catan.jpg","another description"
+sef,4,per day,catan.jpg
+sefe,3,per day,catan.jpg

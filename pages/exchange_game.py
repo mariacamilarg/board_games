@@ -6,26 +6,26 @@ import pandas as pd
 
 name_input = dbc.FormGroup(
     [
-        dbc.Label("Name of the game you want", html_for="game_name"),
-        dbc.Input(type="text", id="game_name", placeholder="Enter the name of the game you want", ),
+        dbc.Label("Name of the game you want", html_for="exchange_game_name"),
+        dbc.Input(id="exchange_game_name", type="text", placeholder="Enter the name of the game you want", ),
 
     ]
 )
 
 name2_input = dbc.FormGroup(
     [
-        dbc.Label("Name of the game you offer", html_for="game_name2"),
-        dbc.Input(type="text", id="game_name2", placeholder="Enter the name of the game you offer", ),
+        dbc.Label("Name of the game you offer", html_for="exchange_game_name2"),
+        dbc.Input(id="exchange_game_name2", type="text",  placeholder="Enter the name of the game you offer", ),
 
     ]
 )
 
 image_input = dbc.FormGroup(
     [
-        dbc.Label("Image", html_for="game_image"),
+        dbc.Label("Image", html_for="exchange_game_image"),
         dbc.Input(
             type="file",
-            id="game_image",
+            id="exchange_game_image",
             placeholder="Select an image",
         ),
     ]
@@ -88,7 +88,10 @@ layout = html.Div([
                     html.Br(),
 
                     dbc.Form([name_input, name2_input, image_input, html.Br(),
-                              dbc.Button("Exchange the game", color="primary", block=True), ]),
+                              dbc.Button("Exchange the game", id="exchange_button", n_clicks=0, color="primary", block=True), ]),
+
+                    html.Div(id='exchange_container-button-basic',
+                             children=' '),
                     html.Br(),
                     html.Br(),
                 ]
