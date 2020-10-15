@@ -4,10 +4,11 @@ import os
 class Database():
 
     def __init__(self):
-        self.all_board_games = pd.read_csv("./assets/csv/board_games.csv")
+        self.all_board_games = pd.read_csv("./assets/csv/bgg_db_2018.csv")
 
     def get_all_board_games(self):
-        return self.all_board_games
+        filtered_columns = ["game_id","names","min_players","max_players","avg_time","avg_rating","image_url","age","mechanic","category","weight"]
+        return self.all_board_games[filtered_columns]
 
     def get_join_games_df(self):
 
