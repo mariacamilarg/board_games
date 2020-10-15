@@ -473,7 +473,7 @@ layout = html.Div([
                                     [
                                         dbc.Col(
                                             # dbc.Row(
-                                            dbc.CardImg(src="/assets/images/catan.jpg", )
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="exchange_img1")
                                             # ),
                                             , width=4
                                         ),
@@ -481,8 +481,8 @@ layout = html.Div([
                                             # dbc.Row(
                                             html.Div(
                                                 [
-                                                    html.H3(["WANTS Catan"]),
-                                                    html.H4(["offers Carcassonne"]),
+                                                    html.H3(["EXCHANGE Catan"], id="exchange_wanted1"),
+                                                    html.H4(["CARCASSONNE"], id="exchange_offered1"),
                                                 ]),
                                             # justify="center", className="px-1"
                                             # ),
@@ -490,7 +490,112 @@ layout = html.Div([
                                         ),
                                     ],
                                 ),
-                                href="/buy_game"
+                                href="/see_exchange_game?id=1"
+                            ),
+
+                            html.Br(),
+
+                            # card ###############################
+                            html.A(
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="exchange_img2")
+                                            # ),
+                                            , width=4
+                                        ),
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            html.Div(
+                                                [
+                                                    html.H3(["EXCHANGE Catan"], id="exchange_wanted2"),
+                                                    html.H4(["CARCASSONNE"], id="exchange_offered2"),
+                                                ]),
+                                            # justify="center", className="px-1"
+                                            # ),
+                                            className="my-auto"
+                                        ),
+                                    ],
+                                ),
+                                href="/see_exchange_game?id=2"
+                            ),
+
+                            html.Br(),
+                            # card ###############################
+                            html.A(
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="exchange_img3")
+                                            # ),
+                                            , width=4
+                                        ),
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            html.Div(
+                                                [
+                                                    html.H3(["EXCHANGE Catan"], id="exchange_wanted3"),
+                                                    html.H4(["CARCASSONNE"], id="exchange_offered3"),
+                                                ]),
+                                            className="my-auto"
+                                        ),
+                                    ],
+                                ),
+                                href="/see_exchange_game?id=3",
+                            ),
+
+                            html.Br(),
+                            # card ###############################
+                            html.A(
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="exchange_img4")
+                                            # ),
+                                            , width=4
+                                        ),
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            html.Div(
+                                                [
+                                                    html.H3(["EXCHANGE Catan"], id="exchange_wanted4"),
+                                                    html.H4(["CARCASSONNE"], id="exchange_offered4"),
+                                                ]),
+                                            # justify="center", className="px-1"
+                                            # ),
+                                            className="my-auto"
+                                        ),
+                                    ],
+                                ),
+                                href="/see_exchange_game?id=4"
+                            ),
+
+                            html.Br(),
+                            # card ###############################
+                            html.A(
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="exchange_img5")
+                                            # ),
+                                            , width=4
+                                        ),
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            html.Div(
+                                                [
+                                                    html.H3(["EXCHANGE Catan"], id="exchange_wanted5"),
+                                                    html.H4(["CARCASSONNE"], id="exchange_offered5"),
+                                                ]),
+                                            className="my-auto"
+                                        ),
+                                    ],
+                                ),
+                                href="/see_exchange_game?id=5",
                             ),
 
                             html.Br(),

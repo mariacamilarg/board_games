@@ -1,0 +1,92 @@
+import dash_html_components as html
+import dash_bootstrap_components as dbc
+import dash_core_components as dcc
+import dash_table
+import pandas as pd
+
+layout = html.Div([
+
+    dbc.Navbar(
+        [
+            dbc.Col(
+                dbc.Row(
+                    html.B(
+                        html.A(
+                            dbc.NavbarBrand("<"),
+                            # html.I(className="fa fa-arrow-left"),
+                            href="/see_exchange_game", id="link_exchanger"
+                        )
+                    ),
+                    justify="center"
+                ),
+                width="auto"
+            ),
+            dbc.Col(
+                dbc.Row(
+                    # html.A(
+                    dbc.NavbarBrand("Contact the exchanger"),
+                    # href="/large",
+                    # ),
+                    justify="center"
+                )
+            ),
+
+            dbc.Col(
+                dbc.Row(
+                    html.B(
+                        html.A(
+                            dbc.NavbarBrand("👤"),
+                            # html.I(className="fa fa-arrow-left"),
+                            # href="/",
+                        )
+                    ),
+                    justify="center"
+                ),
+                width="auto"
+            ),
+        ],
+        color="dark",
+        dark=True,
+    ),
+
+    dbc.Row(
+        children=[
+            dbc.Col(
+                width=1
+            ),
+            dbc.Col(
+                children=[
+
+                    html.Br(),
+
+                    # title
+                    dbc.Row(
+                        html.Div(
+                            [
+                                html.Li(children=[html.Div([html.I("jsnke"),html.H4("jsnek")])]),
+                                html.H3("Catan", className="exchange_card-title"),
+                                html.H4("5€ per day", className="exchange_card-title"),
+                                # html.P(
+                                #     "Almost new. No pieces are missing :)",
+                                #     # "make up the bulk of the card's content.",
+                                #     className="card-text",
+                                # ),
+
+                                html.Br(),
+
+                                # dbc.Button("Contact the seller", color="primary", block=True,
+                                #            href="/contact_seller"),
+                            ], className="message",
+                        ),
+                    ),
+
+                    html.Br(),
+                ]
+            ),
+            dbc.Col(
+                width=1
+            ),
+        ]
+    ),
+
+])

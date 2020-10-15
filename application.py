@@ -16,7 +16,7 @@ import csv
 from backend import database
 
 from widgets import context_menu, get_data_from_db, table, campus_map, parse_url
-from pages import web_app, buy_sell_rent, join_game, buy_game, rent_game, contact_renter, contact_seller, sell_game, rent_out_game, exchange_game
+from pages import web_app, buy_sell_rent, join_game, buy_game, rent_game, contact_renter, contact_exchange, see_exchange_game, contact_seller, sell_game, rent_out_game, exchange_game
 
 # APP DEFINITION
 
@@ -71,6 +71,10 @@ def display_page(pathname):
         return rent_game.layout
     elif pathname == '/contact_renter':
         return contact_renter.layout
+    elif pathname == '/see_exchange_game':
+        return see_exchange_game.layout
+    elif pathname == '/contact_exchange':
+        return contact_exchange.layout
     # elif pathname == '/large':
     #     return large_screen.layout
     else:
@@ -171,7 +175,6 @@ def add_to_card(url):
         my_list.append(" ")
         number_of_rows += 1
 
-    print(len(my_list))
     return my_list
 
 ## BUY page
@@ -193,7 +196,6 @@ def add_to_card(url):
 def display_info(url, search_str):
     if url != '/buy_game':
         raise dash.exceptions.PreventUpdate()
-    print(search_str)
     my_id = parse_url.parse_url_id(search_str)
     print(my_id)
 
@@ -218,7 +220,6 @@ def display_info(url, search_str):
 def display_info(url, search_str):
     if url != '/contact_seller':
         raise dash.exceptions.PreventUpdate()
-    print(search_str)
     my_id = parse_url.parse_url_id(search_str)
     print(my_id)
 
@@ -272,7 +273,6 @@ def add_to_card(url):
         my_list.append(" ")
         number_of_rows += 1
 
-    print(len(my_list))
     return my_list
 
 ## RENT page
@@ -294,7 +294,6 @@ def add_to_card(url):
 def display_info(url, search_str):
     if url != '/rent_game':
         raise dash.exceptions.PreventUpdate()
-    print(search_str)
     my_id = parse_url.parse_url_id(search_str)
     print(my_id)
 
@@ -319,7 +318,6 @@ def display_info(url, search_str):
 def display_info(url, search_str):
     if url != '/contact_renter':
         raise dash.exceptions.PreventUpdate()
-    print(search_str)
     my_id = parse_url.parse_url_id(search_str)
     print(my_id)
 
@@ -327,6 +325,108 @@ def display_info(url, search_str):
     my_list.append("/rent_game?id="+my_id)
 
     return my_list
+
+########################################################################
+## PUT DATA IN EXCHANGE
+@app.callback(
+    [
+        Output('exchange_wanted1', 'children'),
+        Output('exchange_offered1', 'children'),
+        Output('exchange_img1', 'src'),
+        Output('exchange_wanted2', 'children'),
+        Output('exchange_offered2', 'children'),
+        Output('exchange_img2', 'src'),
+        Output('exchange_wanted3', 'children'),
+        Output('exchange_offered3', 'children'),
+        Output('exchange_img3', 'src'),
+        Output('exchange_wanted4', 'children'),
+        Output('exchange_offered4', 'children'),
+        Output('exchange_img4', 'src'),
+        Output('exchange_wanted5', 'children'),
+        Output('exchange_offered5', 'children'),
+        Output('exchange_img5', 'src'),
+    ],
+    [
+        Input('url', 'pathname'),
+    ]
+)
+def add_to_card(url):
+    if url != '/buy_sell_rent':
+        raise dash.exceptions.PreventUpdate()
+
+    number_of_rows = get_data_from_db.exchange_count_lines()
+    my_list = []
+
+    i = 0
+    while i < number_of_rows:
+        my_list.append(get_data_from_db.exchange_get_wanted()[i])
+        my_list.append(get_data_from_db.exchange_get_offered()[i]),
+        my_list.append("/assets/images/" + get_data_from_db.exchange_get_img()[i])
+        i += 1
+
+    number_of_html_cards = 5
+    while number_of_rows < number_of_html_cards:
+        my_list.append(" ")
+        my_list.append(" ")
+        my_list.append(" ")
+        number_of_rows += 1
+
+    return my_list
+
+## SEE EXCHANGE page
+@app.callback(
+    [
+        Output('wanted_exchange_this', 'children'),
+        Output('offered_exchange_this', 'children'),
+        Output('description_exchange_this', 'children'),
+        Output('img_exchange_this', 'src'),
+        Output('link_exchange', 'href'),
+    ],
+    [
+        Input('url', 'pathname'), Input('url', 'search')
+    ],
+    [
+
+    ]
+)
+def display_info(url, search_str):
+    if url != '/see_exchange_game':
+        raise dash.exceptions.PreventUpdate()
+    print(search_str)
+    my_id = parse_url.parse_url_id(search_str)
+    print(my_id)
+
+    my_list = []
+    my_list.append(get_data_from_db.exchange_get_wanted()[int(my_id)-1])
+    my_list.append(get_data_from_db.exchange_get_offered()[int(my_id)-1]),
+    my_list.append(get_data_from_db.exchange_get_description()[int(my_id)-1]),
+    my_list.append("/assets/images/" + get_data_from_db.exchange_get_img()[int(my_id)-1])
+    my_list.append("/contact_exchange?id="+my_id)
+
+    return my_list
+
+## EXCHANGER page
+@app.callback(
+    [
+        Output('link_exchanger', 'href'),
+    ],
+    [
+        Input('url', 'pathname'), Input('url', 'search')
+    ],
+)
+def display_info(url, search_str):
+    if url != '/contact_exchange':
+        raise dash.exceptions.PreventUpdate()
+    print(search_str)
+    my_id = parse_url.parse_url_id(search_str)
+    print(my_id)
+
+    my_list = []
+    my_list.append("/see_exchange_game?id="+my_id)
+
+    return my_list
+
+
 # def add_to_csv(url):
 #
 #     if url != '/buy_sell_rent':
