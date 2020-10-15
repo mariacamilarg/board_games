@@ -14,7 +14,7 @@ layout = html.Div([
                         html.A(
                             dbc.NavbarBrand("<"),
                             # html.I(className="fa fa-arrow-left"),
-                            href="/buy_game",
+                            href="/buy_game", id="link_seller"
                         )
                     ),
                     justify="center"
@@ -31,7 +31,7 @@ layout = html.Div([
                 )
             ),
 
-dbc.Col(
+            dbc.Col(
                 dbc.Row(
                     html.B(
                         html.A(
@@ -61,22 +61,23 @@ dbc.Col(
 
                     # title
                     dbc.Row(
-                                html.Div(
-                                    [
-                                        html.H3("Catan", className="card-title"),
-                                        html.H4("20€", className="card-title"),
-                                        # html.P(
-                                        #     "Almost new. No pieces are missing :)",
-                                        #     # "make up the bulk of the card's content.",
-                                        #     className="card-text",
-                                        # ),
+                        html.Div(
+                            [
+                                html.Li(children=[html.Div([html.I("jsnke"),html.H4("jsnek")])]),
+                                html.H3("Catan", className="card-title"),
+                                html.H4("20€", className="card-title"),
+                                # html.P(
+                                #     "Almost new. No pieces are missing :)",
+                                #     # "make up the bulk of the card's content.",
+                                #     className="card-text",
+                                # ),
 
-                                        html.Br(),
+                                html.Br(),
 
-                                        # dbc.Button("Contact the seller", color="primary", block=True,
-                                        #            href="/contact_seller"),
-                                    ]
-                                ),
+                                # dbc.Button("Contact the seller", color="primary", block=True,
+                                #            href="/contact_seller"),
+                            ], className="message",
+                        ),
                     ),
 
                     html.Br(),
@@ -87,8 +88,5 @@ dbc.Col(
             ),
         ]
     ),
-
-
-
 
 ])

@@ -24,7 +24,7 @@ layout = html.Div([
             dbc.Col(
                 dbc.Row(
                     # html.A(
-                    dbc.NavbarBrand("Buy a Game"),
+                    dbc.NavbarBrand("Rent a Game"),
                     # href="/large",
                     # ),
                     justify="center"
@@ -63,21 +63,21 @@ dbc.Col(
                     dbc.Row(
                         dbc.Card(
                             [
-                                dbc.CardImg(src="/assets/images/catan.jpg", top=True, id="img_buy_this"),
+                                dbc.CardImg(src="/assets/images/catan.jpg", top=True, id="img_rent_this"),
                                 dbc.CardBody(
                                     [
-                                        html.H3(["Catan"], className="card-title", id="name_buy_this"),
-                                        html.H4(["20€"], className="card-title", id="price_buy_this"),
+                                        html.H3(["Catan"], className="card-title", id="name_rent_this"),
+                                        html.H4(["5€ per day"], className="card-title", id="price_rent_this"),
                                         html.P(
                                             "Almost new. No pieces are missing :)",
                                             # "make up the bulk of the card's content.",
-                                            className="card-text", id="description_buy_this"
+                                            className="card-text", id="description_rent_this"
                                         ),
 
                                         html.Br(),
 
-                                        dbc.Button("Contact the seller", color="primary", block=True,
-                                                   href="/contact_seller", id="link_buy"),
+                                        dbc.Button("Contact the renter", color="primary", block=True,
+                                                   href="/contact_renter", id="link_rent"),
                                     ]
                                 ),
                             ],

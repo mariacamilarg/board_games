@@ -14,7 +14,7 @@ layout = html.Div([
                         html.A(
                             dbc.NavbarBrand("<"),
                             # html.I(className="fa fa-arrow-left"),
-                            href="/buy_sell_rent",
+                            href="/rent_game", id="link_renter"
                         )
                     ),
                     justify="center"
@@ -24,14 +24,14 @@ layout = html.Div([
             dbc.Col(
                 dbc.Row(
                     # html.A(
-                    dbc.NavbarBrand("Buy a Game"),
+                    dbc.NavbarBrand("Contact the renter"),
                     # href="/large",
                     # ),
                     justify="center"
                 )
             ),
 
-dbc.Col(
+            dbc.Col(
                 dbc.Row(
                     html.B(
                         html.A(
@@ -61,29 +61,23 @@ dbc.Col(
 
                     # title
                     dbc.Row(
-                        dbc.Card(
+                        html.Div(
                             [
-                                dbc.CardImg(src="/assets/images/catan.jpg", top=True, id="img_buy_this"),
-                                dbc.CardBody(
-                                    [
-                                        html.H3(["Catan"], className="card-title", id="name_buy_this"),
-                                        html.H4(["20€"], className="card-title", id="price_buy_this"),
-                                        html.P(
-                                            "Almost new. No pieces are missing :)",
-                                            # "make up the bulk of the card's content.",
-                                            className="card-text", id="description_buy_this"
-                                        ),
+                                html.Li(children=[html.Div([html.I("jsnke"),html.H4("jsnek")])]),
+                                html.H3("Catan", className="card-title"),
+                                html.H4("5€ per day", className="card-title"),
+                                # html.P(
+                                #     "Almost new. No pieces are missing :)",
+                                #     # "make up the bulk of the card's content.",
+                                #     className="card-text",
+                                # ),
 
-                                        html.Br(),
+                                html.Br(),
 
-                                        dbc.Button("Contact the seller", color="primary", block=True,
-                                                   href="/contact_seller", id="link_buy"),
-                                    ]
-                                ),
-                            ],
-                            # style={"width": "18rem"},
+                                # dbc.Button("Contact the seller", color="primary", block=True,
+                                #            href="/contact_seller"),
+                            ], className="message",
                         ),
-                    justify="center"
                     ),
 
                     html.Br(),
@@ -94,8 +88,5 @@ dbc.Col(
             ),
         ]
     ),
-
-
-
 
 ])

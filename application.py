@@ -9,20 +9,20 @@ import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
-
+from flask import request
 from dash.dependencies import Input, Output
 from dash.dependencies import Input, Output, State
 import csv
 from backend import database
 
-from widgets import context_menu, get_data_from_db, table, campus_map
-from pages import web_app, buy_sell_rent, join_game, buy_game, contact_seller, sell_game, rent_out_game, exchange_game
+from widgets import context_menu, get_data_from_db, table, campus_map, parse_url
+from pages import web_app, buy_sell_rent, join_game, buy_game, rent_game, contact_renter, contact_seller, sell_game, rent_out_game, exchange_game
 
 # APP DEFINITION
 
 app = dash.Dash(
-    __name__, 
-    external_stylesheets=[dbc.themes.BOOTSTRAP], 
+    __name__,
+    external_stylesheets=[dbc.themes.BOOTSTRAP],
     meta_tags=[
         {"name": "viewport", "content": "width=device-width, initial-scale=1"}
     ]
@@ -67,10 +67,15 @@ def display_page(pathname):
         return exchange_game.layout
     elif pathname == '/contact_seller':
         return contact_seller.layout
+    elif pathname == '/rent_game':
+        return rent_game.layout
+    elif pathname == '/contact_renter':
+        return contact_renter.layout
     # elif pathname == '/large':
     #     return large_screen.layout
     else:
         return '404'
+
 
 ## Games DB
 @app.callback(
@@ -96,6 +101,7 @@ def update_all_games(n_clicks):
 
     return columns, data
 
+
 ## Join Games Page
 @app.callback(
     [
@@ -105,14 +111,13 @@ def update_all_games(n_clicks):
     ],
     [
         Input('url', 'pathname'),
-        #Input('join_game_button', 'n_clicks')
+        # Input('join_game_button', 'n_clicks')
     ],
     [
-        
+
     ]
 )
 def join_game_data(url):
-    
     if url != '/join_game':
         raise dash.exceptions.PreventUpdate()
 
@@ -122,20 +127,206 @@ def join_game_data(url):
     return map_fig, games_table_columns, games_table
 
 
-# ## ADD to CSV
-# @app.callback(
-#     [
-#         Output('something', 'figure'),
-#         Output('something2', 'figure'),
-#         Output('something3', 'figure'),
-#         Output('something4', 'figure'),
-#     ],
-#     [
-#         Input('url', 'pathname'),
-#         # Input('join_game_button', 'n_clicks')
-#     ]
-# )
-#
+## PUT DATA IN BUY
+@app.callback(
+    [
+        Output('name1', 'children'),
+        Output('price1', 'children'),
+        Output('img1', 'src'),
+        Output('name2', 'children'),
+        Output('price2', 'children'),
+        Output('img2', 'src'),
+        Output('name3', 'children'),
+        Output('price3', 'children'),
+        Output('img3', 'src'),
+        Output('name4', 'children'),
+        Output('price4', 'children'),
+        Output('img4', 'src'),
+        Output('name5', 'children'),
+        Output('price5', 'children'),
+        Output('img5', 'src'),
+    ],
+    [
+        Input('url', 'pathname'),
+    ]
+)
+def add_to_card(url):
+    if url != '/buy_sell_rent':
+        raise dash.exceptions.PreventUpdate()
+
+    number_of_rows = get_data_from_db.count_lines()
+    my_list = []
+
+    i = 0
+    while i < number_of_rows:
+        my_list.append(get_data_from_db.get_name()[i])
+        my_list.append(get_data_from_db.get_price()[i]),
+        my_list.append("/assets/images/" + get_data_from_db.get_img()[i])
+        i += 1
+
+    number_of_html_cards = 5
+    while number_of_rows < number_of_html_cards:
+        my_list.append(" ")
+        my_list.append(" ")
+        my_list.append(" ")
+        number_of_rows += 1
+
+    print(len(my_list))
+    return my_list
+
+## BUY page
+@app.callback(
+    [
+        Output('name_buy_this', 'children'),
+        Output('price_buy_this', 'children'),
+        Output('description_buy_this', 'children'),
+        Output('img_buy_this', 'src'),
+        Output('link_buy', 'href'),
+    ],
+    [
+        Input('url', 'pathname'), Input('url', 'search')
+    ],
+    [
+
+    ]
+)
+def display_info(url, search_str):
+    if url != '/buy_game':
+        raise dash.exceptions.PreventUpdate()
+    print(search_str)
+    my_id = parse_url.parse_url_id(search_str)
+    print(my_id)
+
+    my_list = []
+    my_list.append(get_data_from_db.get_name()[int(my_id)-1])
+    my_list.append(get_data_from_db.get_price()[int(my_id)-1]),
+    my_list.append(get_data_from_db.get_description()[int(my_id)-1]),
+    my_list.append("/assets/images/" + get_data_from_db.get_img()[int(my_id)-1])
+    my_list.append("/contact_seller?id="+my_id)
+
+    return my_list
+
+## SELLER page
+@app.callback(
+    [
+        Output('link_seller', 'href'),
+    ],
+    [
+        Input('url', 'pathname'), Input('url', 'search')
+    ],
+)
+def display_info(url, search_str):
+    if url != '/contact_seller':
+        raise dash.exceptions.PreventUpdate()
+    print(search_str)
+    my_id = parse_url.parse_url_id(search_str)
+    print(my_id)
+
+    my_list = []
+    my_list.append("/buy_game?id="+my_id)
+
+    return my_list
+
+########################################################################
+## PUT DATA IN RENT
+@app.callback(
+    [
+        Output('rent_name1', 'children'),
+        Output('rent_price1', 'children'),
+        Output('rent_img1', 'src'),
+        Output('rent_name2', 'children'),
+        Output('rent_price2', 'children'),
+        Output('rent_img2', 'src'),
+        Output('rent_name3', 'children'),
+        Output('rent_price3', 'children'),
+        Output('rent_img3', 'src'),
+        Output('rent_name4', 'children'),
+        Output('rent_price4', 'children'),
+        Output('rent_img4', 'src'),
+        Output('rent_name5', 'children'),
+        Output('rent_price5', 'children'),
+        Output('rent_img5', 'src'),
+    ],
+    [
+        Input('url', 'pathname'),
+    ]
+)
+def add_to_card(url):
+    if url != '/buy_sell_rent':
+        raise dash.exceptions.PreventUpdate()
+
+    number_of_rows = get_data_from_db.rent_count_lines()
+    my_list = []
+
+    i = 0
+    while i < number_of_rows:
+        my_list.append(get_data_from_db.rent_get_name()[i])
+        my_list.append(get_data_from_db.rent_get_price()[i]),
+        my_list.append("/assets/images/" + get_data_from_db.rent_get_img()[i])
+        i += 1
+
+    number_of_html_cards = 5
+    while number_of_rows < number_of_html_cards:
+        my_list.append(" ")
+        my_list.append(" ")
+        my_list.append(" ")
+        number_of_rows += 1
+
+    print(len(my_list))
+    return my_list
+
+## RENT page
+@app.callback(
+    [
+        Output('name_rent_this', 'children'),
+        Output('price_rent_this', 'children'),
+        Output('description_rent_this', 'children'),
+        Output('img_rent_this', 'src'),
+        Output('link_rent', 'href'),
+    ],
+    [
+        Input('url', 'pathname'), Input('url', 'search')
+    ],
+    [
+
+    ]
+)
+def display_info(url, search_str):
+    if url != '/rent_game':
+        raise dash.exceptions.PreventUpdate()
+    print(search_str)
+    my_id = parse_url.parse_url_id(search_str)
+    print(my_id)
+
+    my_list = []
+    my_list.append(get_data_from_db.rent_get_name()[int(my_id)-1])
+    my_list.append(get_data_from_db.rent_get_price()[int(my_id)-1]),
+    my_list.append(get_data_from_db.rent_get_description()[int(my_id)-1]),
+    my_list.append("/assets/images/" + get_data_from_db.rent_get_img()[int(my_id)-1])
+    my_list.append("/contact_renter?id="+my_id)
+
+    return my_list
+
+## RENTER page
+@app.callback(
+    [
+        Output('link_renter', 'href'),
+    ],
+    [
+        Input('url', 'pathname'), Input('url', 'search')
+    ],
+)
+def display_info(url, search_str):
+    if url != '/contact_renter':
+        raise dash.exceptions.PreventUpdate()
+    print(search_str)
+    my_id = parse_url.parse_url_id(search_str)
+    print(my_id)
+
+    my_list = []
+    my_list.append("/rent_game?id="+my_id)
+
+    return my_list
 # def add_to_csv(url):
 #
 #     if url != '/buy_sell_rent':
@@ -156,7 +347,8 @@ def join_game_data(url):
 @app.callback(
     [Output("buy", "is_open"),
      Output("rent", "is_open"),
-     Output("exchange", "is_open")],
+     Output("exchange", "is_open"),
+     Output("page_title", "children")],
     [Input("buy-button", "n_clicks"), Input("rent-button", "n_clicks"), Input("exchange-button", "n_clicks")],
     [State("buy", "is_open"), State("rent", "is_open"), State("exchange", "is_open")],
 )
@@ -164,18 +356,19 @@ def toggle_show(n_buy, n_rent, n_exchange, buy_is_open, rent_is_open, exchange_i
     ctx = dash.callback_context
 
     if not ctx.triggered:
-        return True, False, False
+        return True, False, False, "Buy"
     else:
 
         button_id = ctx.triggered[0]["prop_id"].split(".")[0]
 
     if button_id == "buy-button" and n_buy:
-        return not buy_is_open, False, False
+        return not buy_is_open, False, False, "Buy"
     elif button_id == "rent-button" and n_rent:
-        return False, not rent_is_open, False
+        return False, not rent_is_open, False, "Rent"
     elif button_id == "exchange-button" and n_exchange:
-        return False, False, not exchange_is_open,
-    return False, False, False
+        return False, False, not exchange_is_open, "Exchange"
+    return False, False, False, "Choose a category"
+
 
 # CSS
 external_css = ["https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"]

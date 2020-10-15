@@ -9,3 +9,8 @@
 .padding-small{
     padding: 0.7rem;
 }
+
+.message{
+    background: cornflowerblue;
+    width: 100%
+}

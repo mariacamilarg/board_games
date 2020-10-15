@@ -39,7 +39,7 @@ layout = html.Div([
             dbc.Col(
                 dbc.Row(
                     # html.A(
-                    dbc.NavbarBrand("Buy - Sell - Rent - Exchange"),
+                    dbc.NavbarBrand("Buy - Sell - Rent - Exchange", id="page_title"),
                     # href="/large",
                     # ),
                     justify="center"
@@ -142,7 +142,7 @@ layout = html.Div([
                                     [
                                         dbc.Col(
                                             # dbc.Row(
-                                            dbc.CardImg(src="/assets/images/catan.jpg", )
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="img1")
                                             # ),
                                             , width=4
                                         ),
@@ -150,8 +150,8 @@ layout = html.Div([
                                             # dbc.Row(
                                             html.Div(
                                                 [
-                                                    html.H3(["BUY Catan"]),
-                                                    html.H4(["20€"]),
+                                                    html.H3(["BUY Catan"], id="name1"),
+                                                    html.H4(["20€"], id="price1"),
                                                 ]),
                                             # justify="center", className="px-1"
                                             # ),
@@ -159,7 +159,7 @@ layout = html.Div([
                                         ),
                                     ],
                                 ),
-                                href="/buy_game"
+                                href="/buy_game?id=1"
                             ),
 
                             html.Br(),
@@ -170,7 +170,7 @@ layout = html.Div([
                                     [
                                         dbc.Col(
                                             # dbc.Row(
-                                            dbc.CardImg(src="/assets/images/catan.jpg", )
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="img2")
                                             # ),
                                             , width=4
                                         ),
@@ -178,10 +178,8 @@ layout = html.Div([
                                             # dbc.Row(
                                             html.Div(
                                                 [
-                                                    html.H3(["BUY Catan"], id="something"),
-                                                    html.H4(["20€"], id="something2"),
-                                                    html.H4(["20€"], id="something3"),
-                                                    html.H4(["20€"], id="something4"),
+                                                    html.H3(["BUY Catan"], id="name2"),
+                                                    html.H4(["20€"], id="price2"),
                                                 ]),
                                             # justify="center", className="px-1"
                                             # ),
@@ -189,7 +187,84 @@ layout = html.Div([
                                         ),
                                     ],
                                 ),
-                                href="/buy_game"
+                                href="/buy_game?id=2"
+                            ),
+
+                            html.Br(),
+                            # card ###############################
+                            html.A(
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="img3")
+                                            # ),
+                                            , width=4
+                                        ),
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            html.Div(
+                                                [
+                                                    html.H3(["BUY Catan"], id="name3"),
+                                                    html.H4(["20€"], id="price3"),
+                                                ]),
+                                            className="my-auto"
+                                        ),
+                                    ],
+                                ),
+                                href="/buy_game?id=3",
+                            ),
+
+                            html.Br(),
+                            # card ###############################
+                            html.A(
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="img4")
+                                            # ),
+                                            , width=4
+                                        ),
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            html.Div(
+                                                [
+                                                    html.H3(["BUY Catan"], id="name4"),
+                                                    html.H4(["20€"], id="price4"),
+                                                ]),
+                                            # justify="center", className="px-1"
+                                            # ),
+                                            className="my-auto"
+                                        ),
+                                    ],
+                                ),
+                                href="/buy_game?id=4"
+                            ),
+
+                            html.Br(),
+                            # card ###############################
+                            html.A(
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="img5")
+                                            # ),
+                                            , width=4
+                                        ),
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            html.Div(
+                                                [
+                                                    html.H3(["BUY Catan"], id="name5"),
+                                                    html.H4(["20€"], id="price5"),
+                                                ]),
+                                            className="my-auto"
+                                        ),
+                                    ],
+                                ),
+                                href="/buy_game?id=5",
                             ),
 
                             html.Br(),
@@ -233,7 +308,7 @@ layout = html.Div([
                                     [
                                         dbc.Col(
                                             # dbc.Row(
-                                            dbc.CardImg(src="/assets/images/catan.jpg", )
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="rent_img1")
                                             # ),
                                             , width=4
                                         ),
@@ -241,8 +316,8 @@ layout = html.Div([
                                             # dbc.Row(
                                             html.Div(
                                                 [
-                                                    html.H3(["RENT Catan"]),
-                                                    html.H4(["5€ per day"]),
+                                                    html.H3(["RENT Catan"], id="rent_name1"),
+                                                    html.H4(["20€"], id="rent_price1"),
                                                 ]),
                                             # justify="center", className="px-1"
                                             # ),
@@ -250,7 +325,112 @@ layout = html.Div([
                                         ),
                                     ],
                                 ),
-                                href="/buy_game"
+                                href="/rent_game?id=1"
+                            ),
+
+                            html.Br(),
+
+                            # card ###############################
+                            html.A(
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="rent_img2")
+                                            # ),
+                                            , width=4
+                                        ),
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            html.Div(
+                                                [
+                                                    html.H3(["RENT Catan"], id="rent_name2"),
+                                                    html.H4(["20€"], id="rent_price2"),
+                                                ]),
+                                            # justify="center", className="px-1"
+                                            # ),
+                                            className="my-auto"
+                                        ),
+                                    ],
+                                ),
+                                href="/rent_game?id=2"
+                            ),
+
+                            html.Br(),
+                            # card ###############################
+                            html.A(
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="rent_img3")
+                                            # ),
+                                            , width=4
+                                        ),
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            html.Div(
+                                                [
+                                                    html.H3(["RENT Catan"], id="rent_name3"),
+                                                    html.H4(["20€"], id="rent_price3"),
+                                                ]),
+                                            className="my-auto"
+                                        ),
+                                    ],
+                                ),
+                                href="/rent_game?id=3",
+                            ),
+
+                            html.Br(),
+                            # card ###############################
+                            html.A(
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="rent_img4")
+                                            # ),
+                                            , width=4
+                                        ),
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            html.Div(
+                                                [
+                                                    html.H3(["RENT Catan"], id="rent_name4"),
+                                                    html.H4(["20€"], id="rent_price4"),
+                                                ]),
+                                            # justify="center", className="px-1"
+                                            # ),
+                                            className="my-auto"
+                                        ),
+                                    ],
+                                ),
+                                href="/rent_game?id=4"
+                            ),
+
+                            html.Br(),
+                            # card ###############################
+                            html.A(
+                                dbc.Row(
+                                    [
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            dbc.CardImg(src="/assets/images/catan.jpg", id="rent_img5")
+                                            # ),
+                                            , width=4
+                                        ),
+                                        dbc.Col(
+                                            # dbc.Row(
+                                            html.Div(
+                                                [
+                                                    html.H3(["RENT Catan"], id="rent_name5"),
+                                                    html.H4(["2€"], id="rent_price5"),
+                                                ]),
+                                            className="my-auto"
+                                        ),
+                                    ],
+                                ),
+                                href="/rent_game?id=5",
                             ),
 
                             html.Br(),
