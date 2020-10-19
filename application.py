@@ -516,6 +516,64 @@ def update_output_exchange(n_clicks, value_name, value_name2):
     return " "
 
 
+# BUY CONTACT
+@app.callback(
+    [Output("buy_m1", "is_open"),
+     Output("buy_m2", "is_open"),
+     Output("buy_m3", "is_open"),
+     Output("buy_m4", "is_open"),
+     Output("buy_m5", "is_open"),
+     Output("buy_m6", "is_open"),
+     Output("buy_m7", "is_open"),
+     Output('label3', 'children'),
+     ],
+    [Input("url", "pathname"), dash.dependencies.Input('interval3', 'n_intervals')]
+)
+def messages(path, n):
+    if path != '/contact_seller':
+        raise dash.exceptions.PreventUpdate()
+    num_of_messages = 7
+    my_list = []
+    i = 1
+    while i <= num_of_messages:
+        if i <= n+1:
+            my_list.append(True)
+        else:
+            my_list.append(False)
+        i = i + 1
+
+    my_list.append('Intervals Passed: ' + str(n))
+    return my_list
+
+# RENT CONTACT
+@app.callback(
+    [Output("rent_m1", "is_open"),
+     Output("rent_m2", "is_open"),
+     Output("rent_m3", "is_open"),
+     Output("rent_m4", "is_open"),
+     Output("rent_m5", "is_open"),
+     Output("rent_m6", "is_open"),
+     Output("rent_m7", "is_open"),
+     Output('label2', 'children'),
+     ],
+    [Input("url", "pathname"), dash.dependencies.Input('interval2', 'n_intervals')]
+)
+def messages(path, n):
+    if path != '/contact_renter':
+        raise dash.exceptions.PreventUpdate()
+    num_of_messages = 7
+    my_list = []
+    i = 1
+    while i <= num_of_messages:
+        if i <= n+1:
+            my_list.append(True)
+        else:
+            my_list.append(False)
+        i = i + 1
+
+    my_list.append('Intervals Passed: ' + str(n))
+    return my_list
+
 # EXCHANGE CONTACT
 @app.callback(
     [Output("exchange_m1", "is_open"),
@@ -530,6 +588,8 @@ def update_output_exchange(n_clicks, value_name, value_name2):
     [Input("url", "pathname"), dash.dependencies.Input('interval1', 'n_intervals')]
 )
 def messages(path, n):
+    if path != '/contact_exchange':
+        raise dash.exceptions.PreventUpdate()
     num_of_messages = 7
     my_list = []
     i = 1

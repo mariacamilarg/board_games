@@ -57,32 +57,127 @@ layout = html.Div([
             dbc.Col(
                 children=[
 
-                    html.Br(),
+                    dbc.Collapse(
+                        children=[
+                            html.Br(),
 
-                    # title
-                    dbc.Row(
-                        html.Div(
-                            [
-                                html.Li(children=[html.Div([html.I("jsnke"),html.H4("jsnek")])]),
-                                html.H3("Catan", className="card-title"),
-                                html.H4("20€", className="card-title"),
-                                # html.P(
-                                #     "Almost new. No pieces are missing :)",
-                                #     # "make up the bulk of the card's content.",
-                                #     className="card-text",
-                                # ),
+                            html.Div(
+                                [
+                                    html.Div([
+                                        html.H5("Let Camille how to pay and collect the game")]),
 
-                                html.Br(),
+                                ],
+                            ),
 
-                                # dbc.Button("Contact the seller", color="primary", block=True,
-                                #            href="/contact_seller"),
-                            ], className="message",
-                        ),
+                        ]
+                        , id="buy_m1"
                     ),
 
-                    html.Br(),
+                    dbc.Collapse(
+                        children=[
+                            html.Br(),
+
+                            html.Div(
+                                [
+                                    html.Div([html.H5("by Abby"),
+                                              html.H5(
+                                                  "Hi Camille, I’d love to play as soon as possible.")]),
+
+                                ], className="message align-message-right",
+                            ),
+                        ]
+                        , id="buy_m2"
+                    ),
+
+                    dbc.Collapse(
+                        children=[
+                            html.Br(),
+
+                            html.Div(
+                                [
+                                    html.Div([html.H5("by Camille"),
+                                              html.H5(
+                                                  "Sure, no problem! Do you live in Orsay? ")]),
+
+                                ], className="message",
+                            ),
+
+                        ]
+                        , id="buy_m3"
+                    ),
+
+                    dbc.Collapse(
+                        children=[
+                            html.Br(),
+
+                            html.Div(
+                                [
+                                    html.Div([html.H5("by Abby"),
+                                              html.H5(
+                                                  "I live in Paris, so it's not a problem for me to come")]),
+
+                                ], className="message align-message-right",
+                            ),
+
+                        ]
+                        , id="buy_m4"
+                    ),
+
+                    dbc.Collapse(
+                        children=[
+                            html.Br(),
+
+                            html.Div(
+                                [
+                                    html.Div([html.H5("by Camille"),
+                                              html.H5("Perfect. We could meet Monday or Tuesday morning")]),
+
+                                ], className="message",
+                            ),
+
+                        ]
+                        , id="buy_m5"
+                    ),
+
+                    dbc.Collapse(
+                        children=[
+                            html.Br(),
+
+                            html.Div(
+                                [
+                                    html.Div([html.H5("by Abby"),
+                                              html.H5(
+                                                  "I'm good for Monday morning 😊")]),
+
+                                ], className="message align-message-right",
+                            ),
+
+                        ]
+                        , id="buy_m6"
+                    ),
+
+                    dbc.Collapse(
+                        children=[
+                            html.Br(),
+
+                            html.Div(
+                                [
+                                    html.Div([html.H5("by Camille"),
+                                              html.H5("Ok. See you on Monday")]),
+
+                                ], className="message",
+                            ),
+
+                        ]
+                        , id="buy_m7"
+                    ),
+
+                    dcc.Interval(id='interval3', interval=3 * 1000, n_intervals=0),
+                    html.H5(id='label3', children='', className="white")
+
                 ]
             ),
+
             dbc.Col(
                 width=1
             ),

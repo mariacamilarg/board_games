@@ -64,7 +64,7 @@ layout = html.Div([
                                 html.Div(
                                     [
                                         html.Div([
-                                        html.H5("Let Camille know when and for how long you want to rent her game")]),
+                                        html.H5("Let Camille know when to exchange your games")]),
 
 
                                     ],
@@ -81,7 +81,7 @@ layout = html.Div([
                                 html.Div(
                                     [
                                         html.Div([html.H5("by Abby"),
-                                                  html.H5("Hi Camille, I’d love to rent your game next Tuesday afternoon. Is that possible?")]),
+                                                  html.H5("Hi Camille, I'd like to meet at the end of this week. Is that possible?")]),
 
 
                                     ], className="message align-message-right",
@@ -97,7 +97,7 @@ dbc.Collapse(
                                 html.Div(
                                     [
                                         html.Div([html.H5("by Camille"),
-                                                  html.H5("Sure! Do you live in Orsay? You could pick it up Tuesday morning")]),
+                                                  html.H5("Sure! How about near the Eiffel tower?")]),
 
 
                                     ], className="message",
@@ -114,7 +114,7 @@ dbc.Collapse(
                                 html.Div(
                                     [
                                         html.Div([html.H5("by Abby"),
-                                                  html.H5("I live in Paris… 😕 Will you be at uni on Monday or Tuesday? We could meet there")]),
+                                                  html.H5("Perfect, we could do the exchange there.")]),
 
 
                                     ], className="message align-message-right",
@@ -131,7 +131,7 @@ dbc.Collapse(
                                 html.Div(
                                     [
                                         html.Div([html.H5("by Camille"),
-                                                  html.H5("Yeah, I have a class Monday afternoon")]),
+                                                  html.H5("So, Friday afternoon?")]),
 
 
                                     ], className="message",
@@ -148,7 +148,7 @@ dbc.Collapse(
                                 html.Div(
                                     [
                                         html.Div([html.H5("by Abby"),
-                                                  html.H5("Awesome! I’ll rent it from Monday afternoon to Tuesday then? We can meet after your lecture 😊")]),
+                                                  html.H5("Yes! Friday is good 😊")]),
 
 
                                     ], className="message align-message-right",
@@ -165,7 +165,7 @@ dbc.Collapse(
                                 html.Div(
                                     [
                                         html.Div([html.H5("by Camille"),
-                                                  html.H5("Ok. It’s at the Eiffel building. See you ")]),
+                                                  html.H5("Ok. See ya ")]),
 
                                     ], className="message",
                                 ),
