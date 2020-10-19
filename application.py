@@ -266,7 +266,7 @@ def add_to_card(url):
     i = 0
     while i < number_of_rows:
         my_list.append(get_data_from_db.rent_get_name()[i])
-        my_list.append(str(get_data_from_db.rent_get_price()[i]) + " € "+str(get_data_from_db.rent_get_time()[i])),
+        my_list.append(str(get_data_from_db.rent_get_price()[i]) + " € " + str(get_data_from_db.rent_get_time()[i])),
         my_list.append("/assets/images/" + get_data_from_db.rent_get_img()[i])
         i += 1
 
@@ -471,6 +471,7 @@ def update_output(n_clicks, value_name, value_price, value_img):
 
     return " "
 
+
 #################
 ## RENT GAME
 @app.callback(
@@ -491,6 +492,7 @@ def update_output(n_clicks, value_name, value_price, value_time):
 
     return " "
 
+
 ###########
 ## EXCHANGE GAME
 @app.callback(
@@ -506,12 +508,40 @@ def update_output_exchange(n_clicks, value_name, value_name2):
         # Append a list as new line to an old csv file
         manage_csv_rows.append_list_as_row('./assets/csv/exchange.csv', row_contents)
 
-        return 'Thank you! We have added the game to the relative section.'        \
+        return 'Thank you! We have added the game to the relative section.' \
                ' The input value was "{}, {}" and the button has been clicked {} times'.format(
             value_name, value_name2,
             n_clicks
         )
     return " "
+
+
+# EXCHANGE CONTACT
+@app.callback(
+    [Output("exchange_m1", "is_open"),
+     Output("exchange_m2", "is_open"),
+     Output("exchange_m3", "is_open"),
+     Output("exchange_m4", "is_open"),
+     Output("exchange_m5", "is_open"),
+     Output("exchange_m6", "is_open"),
+     Output("exchange_m7", "is_open"),
+     Output('label1', 'children'),
+     ],
+    [Input("url", "pathname"), dash.dependencies.Input('interval1', 'n_intervals')]
+)
+def messages(path, n):
+    num_of_messages = 7
+    my_list = []
+    i = 1
+    while i <= num_of_messages:
+        if i <= n+1:
+            my_list.append(True)
+        else:
+            my_list.append(False)
+        i = i + 1
+
+    my_list.append('Intervals Passed: ' + str(n))
+    return my_list
 
 
 # BUY SELL RENT EXCHANGE

@@ -11,6 +11,17 @@
 }
 
 .message{
-    background: cornflowerblue;
-    width: 100%
+    border-style: groove;
+    /*border: cornflowerblue;*/
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 25px;
+}
+
+.align-message-right{
+    text-align: right;
+}
+
+.white{
+    color: white;
 }
