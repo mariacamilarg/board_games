@@ -57,32 +57,66 @@ layout = html.Div([
             dbc.Col(
                 children=[
 
-                    html.Br(),
+                    dbc.Collapse(
+                        children=[
+                            html.Br(),
 
-                    # title
-                    dbc.Row(
-                        html.Div(
-                            [
-                                html.Li(children=[html.Div([html.I("jsnke"),html.H4("jsnek")])]),
-                                html.H3("Catan", className="exchange_card-title"),
-                                html.H4("5€ per day", className="exchange_card-title"),
-                                # html.P(
-                                #     "Almost new. No pieces are missing :)",
-                                #     # "make up the bulk of the card's content.",
-                                #     className="card-text",
-                                # ),
+                            # title
+                            dbc.Row(
+                                html.Div(
+                                    [
+                                        html.Li(children=[html.Div([html.I("jsnke"), html.H4("jsnek")])]),
+                                        html.H3("Catan", className="exchange_card-title"),
+                                        html.H4("5€ per day", className="exchange_card-title"),
+                                        # html.P(
+                                        #     "Almost new. No pieces are missing :)",
+                                        #     # "make up the bulk of the card's content.",
+                                        #     className="card-text",
+                                        # ),
 
-                                html.Br(),
+                                        html.Br(),
 
-                                # dbc.Button("Contact the seller", color="primary", block=True,
-                                #            href="/contact_seller"),
-                            ], className="message",
-                        ),
+                                        # dbc.Button("Contact the seller", color="primary", block=True,
+                                        #            href="/contact_seller"),
+                                    ], className="message",
+                                ),
+                            ),
+
+                            html.Br(),
+                        ]
                     ),
 
-                    html.Br(),
+                    dbc.Collapse(
+                        children=[
+                            html.Br(),
+
+                            # title
+                            dbc.Row(
+                                html.Div(
+                                    [
+                                        html.Li(children=[html.Div([html.I("jsnke"), html.H4("jsnek")])]),
+                                        html.H3("Catan", className="exchange_card-title"),
+                                        html.H4("5€ per day", className="exchange_card-title"),
+                                        # html.P(
+                                        #     "Almost new. No pieces are missing :)",
+                                        #     # "make up the bulk of the card's content.",
+                                        #     className="card-text",
+                                        # ),
+
+                                        html.Br(),
+
+                                        # dbc.Button("Contact the seller", color="primary", block=True,
+                                        #            href="/contact_seller"),
+                                    ], className="message",
+                                ),
+                            ),
+
+                            html.Br(),
+                        ]
+                    ),
                 ]
             ),
+
             dbc.Col(
                 width=1
             ),

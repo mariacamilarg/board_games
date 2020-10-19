@@ -203,7 +203,7 @@ def display_info(url, search_str):
 
     my_list = []
     my_list.append(get_data_from_db.get_name()[int(my_id) - 1])
-    my_list.append(get_data_from_db.get_price()[int(my_id) - 1] + " €"),
+    my_list.append(str(get_data_from_db.get_price()[int(my_id) - 1]) + str(" €")),
     my_list.append(get_data_from_db.get_description()[int(my_id) - 1]),
     my_list.append("/assets/images/" + get_data_from_db.get_img()[int(my_id) - 1])
     my_list.append("/contact_seller?id=" + my_id)
@@ -304,7 +304,7 @@ def display_info(url, search_str):
 
     my_list = []
     my_list.append(get_data_from_db.rent_get_name()[int(my_id) - 1])
-    my_list.append(get_data_from_db.rent_get_price()[int(my_id) - 1] + " €"),
+    my_list.append(str(get_data_from_db.rent_get_price()[int(my_id) - 1]) + str(" €")),
     my_list.append(get_data_from_db.rent_get_description()[int(my_id) - 1]),
     my_list.append("/assets/images/" + get_data_from_db.rent_get_img()[int(my_id) - 1])
     my_list.append("/contact_renter?id=" + my_id)
