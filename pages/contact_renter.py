@@ -14,7 +14,7 @@ layout = html.Div([
                         html.A(
                             dbc.NavbarBrand("<"),
                             # html.I(className="fa fa-arrow-left"),
-                            href="/buy_game", id="link_seller"
+                            href="/rent_game", id="link_renter"
                         )
                     ),
                     justify="center"
@@ -24,7 +24,7 @@ layout = html.Div([
             dbc.Col(
                 dbc.Row(
                     # html.A(
-                    dbc.NavbarBrand("Contact the seller"),
+                    dbc.NavbarBrand("Contact the renter"),
                     # href="/large",
                     # ),
                     justify="center"
@@ -64,13 +64,13 @@ layout = html.Div([
                             html.Div(
                                 [
                                     html.Div([
-                                        html.H5("Let Camille how to pay and collect the game")]),
+                                        html.H5("Let Camille know when and for how long you want to rent her game")]),
 
                                 ],
                             ),
 
                         ]
-                        , id="buy_m1"
+                        , id="rent_m1"
                     ),
 
                     dbc.Collapse(
@@ -81,12 +81,12 @@ layout = html.Div([
                                 [
                                     html.Div([html.H5("by Abby"),
                                               html.H5(
-                                                  "Hi Camille, I’d love to play as soon as possible.")]),
+                                                  "Hi Camille, I’d love to rent your game next Tuesday afternoon. Is that possible?")]),
 
                                 ], className="message align-message-right",
                             ),
                         ]
-                        , id="buy_m2"
+                        , id="rent_m2"
                     ),
 
                     dbc.Collapse(
@@ -97,13 +97,13 @@ layout = html.Div([
                                 [
                                     html.Div([html.H5("by Camille"),
                                               html.H5(
-                                                  "Sure, no problem! Do you live in Orsay? ")]),
+                                                  "Sure! Do you live in Orsay? You could pick it up Tuesday morning")]),
 
                                 ], className="message",
                             ),
 
                         ]
-                        , id="buy_m3"
+                        , id="rent_m3"
                     ),
 
                     dbc.Collapse(
@@ -114,13 +114,13 @@ layout = html.Div([
                                 [
                                     html.Div([html.H5("by Abby"),
                                               html.H5(
-                                                  "I live in Paris, so it's not a problem for me to come")]),
+                                                  "I live in Paris… 😕 Will you be at uni on Monday or Tuesday? We could meet there")]),
 
                                 ], className="message align-message-right",
                             ),
 
                         ]
-                        , id="buy_m4"
+                        , id="rent_m4"
                     ),
 
                     dbc.Collapse(
@@ -130,13 +130,13 @@ layout = html.Div([
                             html.Div(
                                 [
                                     html.Div([html.H5("by Camille"),
-                                              html.H5("Perfect. We could meet Monday or Tuesday morning")]),
+                                              html.H5("Yeah, I have a class Monday afternoon")]),
 
                                 ], className="message",
                             ),
 
                         ]
-                        , id="buy_m5"
+                        , id="rent_m5"
                     ),
 
                     dbc.Collapse(
@@ -147,13 +147,13 @@ layout = html.Div([
                                 [
                                     html.Div([html.H5("by Abby"),
                                               html.H5(
-                                                  "I'm good for Monday morning 😊")]),
+                                                  "Awesome! I’ll rent it from Monday afternoon to Tuesday then? We can meet after your lecture 😊")]),
 
                                 ], className="message align-message-right",
                             ),
 
                         ]
-                        , id="buy_m6"
+                        , id="rent_m6"
                     ),
 
                     dbc.Collapse(
@@ -163,17 +163,17 @@ layout = html.Div([
                             html.Div(
                                 [
                                     html.Div([html.H5("by Camille"),
-                                              html.H5("Ok. See you on Monday")]),
+                                              html.H5("Ok. It’s at the Eiffel building. See you ")]),
 
                                 ], className="message",
                             ),
 
                         ]
-                        , id="buy_m7"
+                        , id="rent_m7"
                     ),
 
-                    dcc.Interval(id='interval3', interval=3 * 1000, n_intervals=0),
-                    html.H5(id='label3', children='', className="white")
+                    dcc.Interval(id='interval2', interval=3 * 1000, n_intervals=0),
+                    html.H5(id='label2', children='', className="white")
 
                 ]
             ),

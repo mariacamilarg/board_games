@@ -24,7 +24,7 @@ layout = html.Div([
             dbc.Col(
                 dbc.Row(
                     # html.A(
-                    dbc.NavbarBrand("Buy a Game"),
+                    dbc.NavbarBrand("Exchange a Game"),
                     # href="/large",
                     # ),
                     justify="center"
@@ -63,21 +63,21 @@ dbc.Col(
                     dbc.Row(
                         dbc.Card(
                             [
-                                dbc.CardImg(src="/assets/images/catan.jpg", top=True, id="img_buy_this"),
+                                dbc.CardImg(src="/assets/images/catan.jpg", top=True, id="img_exchange_this"),
                                 dbc.CardBody(
                                     [
-                                        html.H3(["Catan"], className="card-title", id="name_buy_this"),
-                                        html.H4(["20€"], className="card-title", id="price_buy_this"),
+                                        html.H3(["Catan--"], className="card-title", id="wanted_exchange_this"),
+                                        html.H4(["CARCASSONNE"], className="card-title", id="offered_exchange_this"),
                                         html.P(
                                             "Almost new. No pieces are missing :)",
                                             # "make up the bulk of the card's content.",
-                                            className="card-text", id="description_buy_this"
+                                            className="card-text", id="description_exchange_this"
                                         ),
 
                                         html.Br(),
 
-                                        dbc.Button("Contact the seller", color="primary", block=True,
-                                                   href="/contact_seller", id="link_buy"),
+                                        dbc.Button("Contact the exchanger", color="primary", block=True,
+                                                   href="/contact_exchange", id="link_exchange"),
                                     ]
                                 ),
                             ],

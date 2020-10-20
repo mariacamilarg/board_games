@@ -9,3 +9,19 @@
 .padding-small{
     padding: 0.7rem;
 }
+
+.message{
+    border-style: groove;
+    /*border: cornflowerblue;*/
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 25px;
+}
+
+.align-message-right{
+    text-align: right;
+}
+
+.white{
+    color: white;
+}

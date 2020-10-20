@@ -6,8 +6,8 @@ import pandas as pd
 
 name_input = dbc.FormGroup(
     [
-        dbc.Label("Name of the game", html_for="game_name"),
-        dbc.Input(type="text", id="game_name", placeholder="Enter the name of the game", ),
+        dbc.Label("Name of the game", html_for="rent_game_name"),
+        dbc.Input(type="text", id="rent_game_name", placeholder="Enter the name of the game", ),
 
     ]
 )
@@ -16,10 +16,10 @@ price_input = dbc.Form(
     [
         dbc.FormGroup(
             [
-                dbc.Label("Price", html_for="game_price",),
+                dbc.Label("Price", html_for="rent_game_price", ),
                 dbc.Input(
                     type="number",
-                    id="game_price",
+                    id="rent_game_price",
                     placeholder="Enter the price",
                 ),
             ],
@@ -27,10 +27,10 @@ price_input = dbc.Form(
         ,
         dbc.FormGroup(
             [
-                dbc.Label("Time span", html_for="game_time",),
+                dbc.Label("Time span", html_for="rent_game_time", ),
                 dbc.Input(
                     type="text",
-                    id="game_time",
+                    id="rent_game_time",
                     placeholder="Enter the time span (e.g. per day)",
                 ),
             ]
@@ -40,10 +40,10 @@ price_input = dbc.Form(
 
 image_input = dbc.FormGroup(
     [
-        dbc.Label("Image", html_for="game_image"),
+        dbc.Label("Image", html_for="rent_game_image"),
         dbc.Input(
             type="file",
-            id="game_image",
+            id="rent_game_image",
             placeholder="Select an image",
         ),
     ]
@@ -106,7 +106,11 @@ layout = html.Div([
                     html.Br(),
 
                     dbc.Form([name_input, price_input, image_input, html.Br(),
-                              dbc.Button("Rent out the game", color="primary", block=True), ]),
+                              dbc.Button("Rent out the game", id="rent_button", n_clicks=0, color="primary",
+                                         block=True), ]),
+
+                    html.Div(id='rent_container-button-basic',
+                             children='Enter a value and press submit'),
                     html.Br(),
                     html.Br(),
                 ]
