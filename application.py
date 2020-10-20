@@ -17,7 +17,7 @@ from backend import database
 
 from widgets import context_menu, get_data_from_db, table, campus_map, parse_url, manage_csv_rows
 from pages import web_app, buy_sell_rent, join_game, buy_game, rent_game, contact_renter, contact_exchange, \
-    see_exchange_game, contact_seller, sell_game, rent_out_game, exchange_game
+see_exchange_game, contact_seller, sell_game, rent_out_game, exchange_game, games_db
 
 # APP DEFINITION
 
@@ -76,6 +76,8 @@ def display_page(pathname):
         return see_exchange_game.layout
     elif pathname == '/contact_exchange':
         return contact_exchange.layout
+    elif pathname == '/games_db':
+        return games_db.layout
     # elif pathname == '/large':
     #     return large_screen.layout
     else:
