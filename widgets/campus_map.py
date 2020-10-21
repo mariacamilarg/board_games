@@ -96,10 +96,7 @@ def render_list(df):
             children=[
                 dbc.Col(
                     dbc.CardImg(src=game["img"], id=f"img{game_id}"), 
-                    width=2
-                ),
-                dbc.Col(
-                    width=1
+                    width=3
                 ),
                 dbc.Col(
                     children=[

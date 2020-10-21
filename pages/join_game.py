@@ -55,7 +55,7 @@ layout = html.Div([
                     # img
                     dbc.Row(
                         dbc.CardImg(
-                            src="/assets/images/bananagrams.jpg", 
+                            #src="/assets/images/bananagrams.jpg", 
                             id="join-img"
                         ),
                         justify="center"
@@ -64,7 +64,7 @@ layout = html.Div([
                     # title
                     dbc.Row(
                         html.H3(
-                            "BANANAGRAMS",
+                            "",#"BANANAGRAMS",
                             id="join-name"
                         ),
                         justify="center"
@@ -73,24 +73,25 @@ layout = html.Div([
                     html.Br(),
 
                     dbc.Row(
-                        "Today @ 12:30pm",
+                        "",#"Today @ 12:30pm",
                         id="join-when",
                         justify="center"
                     ),
                     dbc.Row(
                         children=[
-                            html.I(className='fa fa-clock-o fa-sm'),
-                            " 1h30 . .",
-                            html.I(className='fa fa-users fa-sm'),
-                            " 3/5 . .",
-                            html.I(className='fa fa-signal fa-sm'),
-                            " 1/5"
+                            ""
+                            # html.I(className='fa fa-clock-o fa-sm'),
+                            # " 1h30 . .",
+                            # html.I(className='fa fa-users fa-sm'),
+                            # " 3/5 . .",
+                            # html.I(className='fa fa-signal fa-sm'),
+                            # " 1/5"
                         ],
                         id="join-details",
                         justify="center"
                     ),
                     dbc.Row(
-                        "Categories: words",
+                        "", #"Categories: words",
                         id="join-category",
                         justify="center"
                     ),
