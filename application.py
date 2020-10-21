@@ -16,7 +16,7 @@ import csv
 from backend import database
 
 from widgets import context_menu, get_data_from_db, table, campus_map, parse_url, manage_csv_rows
-from pages import web_app, buy_sell_rent, join_game, buy_game, rent_game, contact_renter, contact_exchange, \
+from pages import web_app, buy_sell_rent, join_host_game, join_game, buy_game, rent_game, contact_renter, contact_exchange, \
 see_exchange_game, contact_seller, sell_game, rent_out_game, exchange_game, games_db
 
 # APP DEFINITION
@@ -55,6 +55,8 @@ db = database.Database()
 def display_page(pathname):
     if pathname == '/':
         return web_app.layout
+    elif pathname == '/join_host_game':
+        return join_host_game.layout
     elif pathname == '/join_game':
         return join_game.layout
     elif pathname == '/buy_sell_rent':
@@ -125,13 +127,43 @@ def update_all_games(n_clicks):
         #State('slider_join_game', 'value')
     ]
 )
-def join_game_data(url, in_next_hours):
-    if url != '/join_game':
+def join_host_game_data(url, in_next_hours):
+    if url != '/join_host_game':
         raise dash.exceptions.PreventUpdate()
 
     map_fig, games_list = campus_map.get_data(db, in_next_hours)
 
     return map_fig, games_list
+
+
+@app.callback(
+    [
+        Output('join-img', 'src'),
+        Output('join-name', 'children'),
+        Output('join-when', 'children'),
+        Output('join-details', 'children'),
+        Output('join-category', 'children'),
+        #Output('link_buy', 'href'),
+    ],
+    [
+        Input('url', 'pathname'), 
+        Input('url', 'search')
+    ],
+    [
+
+    ]
+)
+def join_game_data(url, search_str):
+
+    if url != '/join_game':
+        raise dash.exceptions.PreventUpdate()
+
+    game_id = int(parse_url.parse_url_id(search_str))
+    print(game_id)
+
+    game_data = campus_map.get_data_game(db, game_id)
+
+    return game_data
 
 
 ## PUT DATA IN BUY

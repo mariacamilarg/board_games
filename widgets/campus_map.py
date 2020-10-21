@@ -10,14 +10,86 @@ def get_data(db, in_next_hours):
 
     # filter df
     df = df[ df["next_hours"] <= in_next_hours ]
-
     print(df)
 
-    # map
+    # render
     map_fig = render_map(df)
+    games_list = render_list(df)
 
-    # list
+    return map_fig, games_list
+
+
+def get_data_game(db, game_id):
+    
+    df = db.get_join_games_df()
+
+    # filter df
+    df = df[ df["id"] == game_id ]
+    print(df)
+
+    for i, game in df.iterrows():
+        game_id = game["id"]
+
+        img = game["img"]
+        name = game["name"]
+        when = f'{game["when"]} @ {game["time"]}'
+        details = [
+            html.I(className='fa fa-clock-o fa-sm'),
+            f' {game["duration_str"]} . .',
+            html.I(className='fa fa-users fa-sm'),
+            f' {game["current_players"]}/{game["max_players"]} . .',
+            html.I(className='fa fa-signal fa-sm'),
+            f' {game["difficulty"]}/5'
+        ]
+        category = f'Categories: {game["category"]}'
+
+        return (img, name, when, details, category)
+
+
+
+def render_map(df):
+
+    df["hov_text"] = df['name'] + "<br>Category: " + df['category'] + "<br>Difficulty: " + df['difficulty'].astype(str) + "/5<br># Players: " + df['max_players'].astype(str)
+
+    # Create figure
+    locations = [go.Scattermapbox(
+        lon=df['longitude'],
+        lat=df['latitude'],
+        mode='markers',
+        marker={'color': df['color'], 'size': 5 * df['factor']},
+        unselected={'marker': {'opacity': 1}},
+        selected={'marker': {'opacity': 0.5, 'size': 100}},
+        hoverinfo='text',
+        hovertext=df['hov_text']
+    )]
+
+    # Return figure
+    return {
+        'data': locations,
+        'layout': go.Layout(
+            uirevision='foo',  # preserves state of figure/map after callback activated
+            clickmode='event+select',
+            hovermode='closest',
+            hoverdistance=2,
+            mapbox=dict(
+                accesstoken=MAPBOX_ACCESS_TOKEN,
+                bearing=0,
+                style='outdoors',
+                center=dict(
+                    lat=48.705,
+                    lon=2.17
+                ),
+                zoom=12,
+            ),
+            margin=dict(l=0, r=0, t=0, b=0)
+        )
+    }
+
+
+def render_list(df):
+
     games_list = []
+
     for i, game in df.iterrows():
         game_id = game["id"]
         a = html.A(dbc.Row(
@@ -56,45 +128,8 @@ def get_data(db, in_next_hours):
         games_list.append(a)
         games_list.append(html.Br())
 
-    print(games_list)
+    return games_list
 
-    return map_fig, games_list
-
-
-def render_map(df):
-    # Create figure
-    locations = [go.Scattermapbox(
-        lon=df['longitude'],
-        lat=df['latitude'],
-        mode='markers',
-        marker={'color': df['color'], 'size': 5 * df['factor']},
-        unselected={'marker': {'opacity': 1}},
-        selected={'marker': {'opacity': 0.5, 'size': 100}},
-        hoverinfo='text',
-        hovertext=df['name']
-    )]
-
-    # Return figure
-    return {
-        'data': locations,
-        'layout': go.Layout(
-            uirevision='foo',  # preserves state of figure/map after callback activated
-            clickmode='event+select',
-            hovermode='closest',
-            hoverdistance=2,
-            mapbox=dict(
-                accesstoken=MAPBOX_ACCESS_TOKEN,
-                bearing=0,
-                style='outdoors',
-                center=dict(
-                    lat=48.705,
-                    lon=2.17
-                ),
-                zoom=12,
-            ),
-            margin=dict(l=0, r=0, t=0, b=0)
-        )
-    }
 
 def render_table(df):
 

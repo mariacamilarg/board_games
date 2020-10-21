@@ -14,9 +14,8 @@ layout = html.Div([
                 dbc.Row(
                     html.B(
                         html.A(
-                            dbc.NavbarBrand("👤"),
-                            # html.I(className="fa fa-arrow-left"),
-                            # href="/",
+                            #dbc.NavbarBrand("👤"),
+                            html.I(className="fa fa-user fa-lg", style= {'color':'white'}),
                         )
                     ),
                     justify="center"
@@ -63,7 +62,7 @@ layout = html.Div([
                             color="warning", 
                             size="lg",
                             block=True,
-                            href="/join_game",
+                            href="/join_host_game",
                         ),
                     ),
 
