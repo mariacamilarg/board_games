@@ -21,9 +21,10 @@ see_exchange_game, contact_seller, sell_game, rent_out_game, exchange_game, game
 
 # APP DEFINITION
 
+font_awesome_css = "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 app = dash.Dash(
     __name__,
-    external_stylesheets=[dbc.themes.BOOTSTRAP],
+    external_stylesheets=[dbc.themes.BOOTSTRAP, font_awesome_css],
     meta_tags=[
         {"name": "viewport", "content": "width=device-width, initial-scale=1"}
     ]
@@ -113,25 +114,24 @@ def update_all_games(n_clicks):
 @app.callback(
     [
         Output('campus_map', 'figure'),
-        Output('join_games_table', 'columns'),
-        Output('join_games_table', 'data'),
+        Output('list_games_div', 'children'),
     ],
     [
         Input('url', 'pathname'),
+        Input('slider_join_game', 'value')
         # Input('join_game_button', 'n_clicks')
     ],
     [
-
+        #State('slider_join_game', 'value')
     ]
 )
-def join_game_data(url):
+def join_game_data(url, in_next_hours):
     if url != '/join_game':
         raise dash.exceptions.PreventUpdate()
 
-    map_fig, games_table = campus_map.get_data(db)
-    games_table_columns = [{"name": i, "id": i} for i in games_table[0].keys()]
+    map_fig, games_list = campus_map.get_data(db, in_next_hours)
 
-    return map_fig, games_table_columns, games_table
+    return map_fig, games_list
 
 
 ## PUT DATA IN BUY
@@ -632,9 +632,6 @@ def toggle_show(n_buy, n_rent, n_exchange, buy_is_open, rent_is_open, exchange_i
         return False, False, not exchange_is_open, "Exchange"
     return False, False, False, "Choose a category"
 
-
-# CSS
-external_css = ["https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"]
 
 # MAIN
 if __name__ == '__main__':

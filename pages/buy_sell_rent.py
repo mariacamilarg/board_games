@@ -5,7 +5,6 @@ import dash_table
 import pandas as pd
 
 card_content = [
-
     # dbc.CardHeader("Card header"),
     dbc.CardBody(
         [
@@ -19,15 +18,15 @@ card_content = [
 ]
 
 layout = html.Div([
-
     dbc.Navbar(
         [
             dbc.Col(
                 dbc.Row(
                     html.A(
                         html.B(
-                            dbc.NavbarBrand("<"),
-                            # html.I(className="fa fa-arrow-left"),
+                            dbc.NavbarBrand(
+                                "<"
+                            ),
                             className="padding-small"
                         ),
                         href="/",
@@ -38,14 +37,13 @@ layout = html.Div([
             ),
             dbc.Col(
                 dbc.Row(
-                    # html.A(
-                    dbc.NavbarBrand("Buy - Sell - Rent - Exchange", id="page_title"),
-                    # href="/large",
-                    # ),
-                    justify="center"
+                    dbc.NavbarBrand(
+                        "Buy/Sell - Rent - Exchange",
+                        id="page_title"
+                    ),
+                    justify="center",
                 )
             ),
-
             dbc.Col(
                 dbc.Row(
                     html.B(
@@ -74,16 +72,14 @@ layout = html.Div([
 
                     html.Br(),
 
-                    # title
-                    # dbc.Row(
                     dbc.ButtonGroup(
-                        [dbc.Button("Buy", color="primary", active="True", id="buy-button", ),
-                         dbc.Button("Rent", color="success", id="rent-button", ),
-                         dbc.Button("Exchange", color="warning", id="exchange-button", )]
-                        , className="w-100",
+                        [
+                            dbc.Button("Buy", color="primary", active="True", id="buy-button", ),
+                            dbc.Button("Rent", color="success", id="rent-button", ),
+                            dbc.Button("Exchange", color="warning", id="exchange-button", )
+                        ], 
+                        className="w-100",
                     ),
-                    # , justify="center"
-                    # ),
 
                     html.Br(),
                     html.Br(),

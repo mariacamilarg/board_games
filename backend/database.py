@@ -12,13 +12,14 @@ class Database():
 
     def get_join_games_df(self):
 
-        df = pd.DataFrame(data={
-            'id': [1, 2],
-            'latitude': [48.7066848, 48.7027157], 
-            'longitude': [2.166689, 2.1776856], 
-            'color': ['#1f9539', '#1f9539'],
-            'factor': [5, 5],
-            'hov_txt': ['SETTLERS OF CATAN', 'UNO'],
-        })
+        # df = pd.DataFrame(data={
+        #     'id': [1, 2],
+        #     'latitude': [48.7066848, 48.7027157], 
+        #     'longitude': [2.166689, 2.1776856], 
+        #     'color': ['#1f9539', '#1f9539'],
+        #     'factor': [5, 5],
+        #     'hov_txt': ['SETTLERS OF CATAN', 'UNO'],
+        # })
+        df = pd.read_csv("./assets/csv/join_games.csv")
 
         return df

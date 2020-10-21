@@ -1,16 +1,64 @@
 import plotly.graph_objs as go
 import dash_html_components as html
+import dash_bootstrap_components as dbc
 
 MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoianVlc3BhZm84NyIsImEiOiJja2QwcWNiZ28wMTY0MnhwYmNqbDMxaGl0In0.SRdwqTCLquu35-2noY2tEQ'
 
-def get_data(db):
+def get_data(db, in_next_hours):
 
     df = db.get_join_games_df()
 
-    fig = render_map(df)
-    table = render_table(df)
+    # filter df
+    df = df[ df["next_hours"] <= in_next_hours ]
 
-    return fig, table
+    print(df)
+
+    # map
+    map_fig = render_map(df)
+
+    # list
+    games_list = []
+    for i, game in df.iterrows():
+        game_id = game["id"]
+        a = html.A(dbc.Row(
+            children=[
+                dbc.Col(
+                    dbc.CardImg(src=game["img"], id=f"img{game_id}"), 
+                    width=2
+                ),
+                dbc.Col(
+                    width=1
+                ),
+                dbc.Col(
+                    children=[
+                        dbc.Row(game["when"]),
+                        dbc.Row(game["time"]),
+                    ],
+                    width=3
+                ),
+                dbc.Col(
+                    children=[
+                        dbc.Row(game["name"]),
+                        dbc.Row(
+                            children=[
+                                html.I(className='fa fa-clock-o fa-sm'),
+                                f"{game['time']} . .",
+                                html.I(className='fa fa-users fa-sm'),
+                                f"{game['current_players']}/{game['max_players']}",
+                            ],
+                        ),
+                    ]
+                ),
+            ]),
+            href=f"/join_game?id={game_id}"
+        )
+
+        games_list.append(a)
+        games_list.append(html.Br())
+
+    print(games_list)
+
+    return map_fig, games_list
 
 
 def render_map(df):
@@ -23,7 +71,7 @@ def render_map(df):
         unselected={'marker': {'opacity': 1}},
         selected={'marker': {'opacity': 0.5, 'size': 100}},
         hoverinfo='text',
-        hovertext=df['hov_txt']
+        hovertext=df['name']
     )]
 
     # Return figure
@@ -39,10 +87,10 @@ def render_map(df):
                 bearing=0,
                 style='outdoors',
                 center=dict(
-                    lat=48.71,
+                    lat=48.705,
                     lon=2.17
                 ),
-                zoom=11,
+                zoom=12,
             ),
             margin=dict(l=0, r=0, t=0, b=0)
         )

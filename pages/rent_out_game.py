@@ -69,14 +69,10 @@ layout = html.Div([
             ),
             dbc.Col(
                 dbc.Row(
-                    # html.A(
-                    dbc.NavbarBrand("Rent out a Game"),
-                    # href="/large",
-                    # ),
+                    dbc.NavbarBrand("Rent Out a Game"),
                     justify="center"
                 )
             ),
-
             dbc.Col(
                 dbc.Row(
                     html.B(
