@@ -2,26 +2,30 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 
 layout = html.Div([
-
-dbc.Navbar(
+    dbc.Navbar(
         [
             dbc.Col(
                 dbc.Row(
-                    # html.A(
-                    # dbc.CardImg(src="/assets/images/logo.png", ),
-
-                    html.H1("COME AND PLAY", className="text-light"),
-                    # href="/large",
-                    # ),
+                    html.H2(html.B("COME AND PLAY"), className="text-light"),
                     justify="center",
                 )
             ),
-
+            dbc.Col(
+                dbc.Row(
+                    html.B(
+                        html.A(
+                            #dbc.NavbarBrand("👤"),
+                            html.I(className="fa fa-user fa-lg", style= {'color':'white'}),
+                        )
+                    ),
+                    justify="center"
+                ),
+                width="auto"
+            ),
         ],
-        color="blue",
+        color="dark",
         dark=True,
     ),
-
 
     dbc.Row(
         children=[
@@ -33,19 +37,32 @@ dbc.Navbar(
                     html.Br(),
                     dbc.Row(
                         html.H3("What do you want to do?"),
-                    justify="center"
+                        justify="center"
                     ),
 
-                    html.Br(),
                     html.Br(),
 
                     dbc.Row(
                         dbc.Button(
-                            'JOIN A GAME OR CREATE YOUR OWN', 
+                            html.H3(
+                                children=[
+                                    ".",
+                                    html.Br(),
+                                    html.Br(),
+                                    "Join OR Host",
+                                    html.Br(),
+                                    html.Br(),
+                                    "a game session",
+                                    html.Br(),
+                                    html.Br(),
+                                    "."
+                                ]
+                            ), 
                             id="join_game_button",
-                            color="primary", 
+                            color="warning", 
+                            size="lg",
                             block=True,
-                            href="/join_game",
+                            href="/join_host_game",
                         ),
                     ),
 
@@ -53,9 +70,25 @@ dbc.Navbar(
 
                     dbc.Row(
                         dbc.Button(
-                            'BUY, SELL, RENT OR EXCHANGE A GAME',
+                            html.H3(
+                                children=[
+                                    ".",
+                                    html.Br(),
+                                    html.Br(),
+                                    "Buy/Sell OR Rent",
+                                    html.Br(),
+                                    "OR Exchange",
+                                    html.Br(),
+                                    html.Br(),
+                                    "a board game",
+                                    html.Br(),
+                                    html.Br(),
+                                    ".",
+                                ]
+                            ),
                             id="buy_sell_rent_button",
-                            color="primary",
+                            color="info",
+                            size="lg",
                             className="mr-1",
                             href="/buy_sell_rent",
                             block=True

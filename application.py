@@ -16,14 +16,14 @@ import csv
 from backend import database
 
 from widgets import context_menu, get_data_from_db, table, campus_map, parse_url, manage_csv_rows
-from pages import web_app, buy_sell_rent, join_game, buy_game, rent_game, contact_renter, contact_exchange, \
-see_exchange_game, contact_seller, sell_game, rent_out_game, exchange_game, games_db
+from pages import web_app, buy_sell_rent, join_host_game, join_game, request_join, host_game, buy_game, rent_game, contact_renter, contact_exchange, see_exchange_game, contact_seller, sell_game, rent_out_game, exchange_game, games_db
 
 # APP DEFINITION
 
+font_awesome_css = "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 app = dash.Dash(
     __name__,
-    external_stylesheets=[dbc.themes.BOOTSTRAP],
+    external_stylesheets=[dbc.themes.BOOTSTRAP, font_awesome_css],
     meta_tags=[
         {"name": "viewport", "content": "width=device-width, initial-scale=1"}
     ]
@@ -54,8 +54,14 @@ db = database.Database()
 def display_page(pathname):
     if pathname == '/':
         return web_app.layout
+    elif pathname == '/join_host_game':
+        return join_host_game.layout
     elif pathname == '/join_game':
         return join_game.layout
+    elif pathname == '/request_join':
+        return request_join.layout
+    elif pathname == '/host_game':
+        return host_game.layout
     elif pathname == '/buy_sell_rent':
         return buy_sell_rent.layout
     elif pathname == '/buy_game':
@@ -113,25 +119,134 @@ def update_all_games(n_clicks):
 @app.callback(
     [
         Output('campus_map', 'figure'),
-        Output('join_games_table', 'columns'),
-        Output('join_games_table', 'data'),
+        Output('list_games_div', 'children'),
     ],
     [
         Input('url', 'pathname'),
+        Input('slider_join_game', 'value')
         # Input('join_game_button', 'n_clicks')
+    ],
+    [
+        #State('slider_join_game', 'value')
+    ]
+)
+def join_host_game_data(url, in_next_hours):
+    if url != '/join_host_game':
+        raise dash.exceptions.PreventUpdate()
+
+    map_fig, games_list = campus_map.get_data(db, in_next_hours)
+
+    return map_fig, games_list
+
+
+@app.callback(
+    [
+        Output('join-img', 'src'),
+        Output('join-name', 'children'),
+        Output('join-when', 'children'),
+        Output('join-details', 'children'),
+        Output('join-category', 'children'),
+        Output('request_button', 'href'),
+    ],
+    [
+        Input('url', 'pathname'), 
+        Input('url', 'search')
     ],
     [
 
     ]
 )
-def join_game_data(url):
+def join_game_data(url, search_str):
+
     if url != '/join_game':
         raise dash.exceptions.PreventUpdate()
 
-    map_fig, games_table = campus_map.get_data(db)
-    games_table_columns = [{"name": i, "id": i} for i in games_table[0].keys()]
+    game_id = int(parse_url.parse_url_id(search_str))
+    print(game_id)
 
-    return map_fig, games_table_columns, games_table
+    game_data = campus_map.get_data_game(db, game_id)
+
+    return game_data
+
+
+@app.callback(
+    [
+        Output('join_game_link_request', 'href'),
+        Output('request_info', 'children'),
+        Output('reply_join', 'is_open'),
+        # Output('img_buy_this', 'src'),
+        # Output('link_buy', 'href'),
+    ],
+    [
+        Input('url', 'pathname'), 
+        Input('url', 'search'),
+        Input('interval_request', 'n_intervals')
+    ],
+    [
+
+    ]
+)
+def request_join_data(url, search_str, n):
+    if url != '/request_join':
+        raise dash.exceptions.PreventUpdate()
+    game_id = int(parse_url.parse_url_id(search_str))
+    print(game_id)
+
+    request_data = campus_map.get_data_request(db, game_id, n)
+
+    return request_data
+
+
+@app.callback(
+    Output('modal-2', 'is_open'),
+    [
+        Input("filter-button", "n_clicks"), 
+        Input("close-2", "n_clicks")
+    ],
+    [
+        State("modal-2", "is_open")
+    ],
+)
+def filter(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    Output('modal', 'is_open'),
+    [
+        Input("share_button", "n_clicks"), 
+        Input("close", "n_clicks")
+    ],
+    [
+        State("modal", "is_open")
+    ],
+)
+def share_link(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
+    [
+        Output('output-image-upload', 'src'),
+        Output('request_result', 'is_open'),
+    ],
+    [
+        Input('upload-image', 'contents')
+    ],
+    [
+        State('upload-image', 'filename'),
+        State('upload-image', 'last_modified')
+    ]
+)
+def update_output(list_of_contents, list_of_names, list_of_dates):
+    if list_of_contents is not None:
+        print(list_of_names)
+        print(f"/assets/images/{list_of_names}")
+        return f"/assets/images/{list_of_names}", True
 
 
 ## PUT DATA IN BUY
@@ -632,9 +747,6 @@ def toggle_show(n_buy, n_rent, n_exchange, buy_is_open, rent_is_open, exchange_i
         return False, False, not exchange_is_open, "Exchange"
     return False, False, False, "Choose a category"
 
-
-# CSS
-external_css = ["https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"]
 
 # MAIN
 if __name__ == '__main__':

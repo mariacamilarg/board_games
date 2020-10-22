@@ -35,8 +35,7 @@ dbc.Col(
                 dbc.Row(
                     html.B(
                         html.A(
-                            dbc.NavbarBrand("👤"),
-                            # html.I(className="fa fa-arrow-left"),
+                            html.I(className="fa fa-user fa-lg", style= {'color':'white'}),
                             # href="/",
                         )
                     ),

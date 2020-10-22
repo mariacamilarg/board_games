@@ -4,10 +4,43 @@ import dash_core_components as dcc
 import dash_table
 import pandas as pd
 
-from widgets import campus_map
-
-
 layout = html.Div([
+
+    dbc.Navbar(
+        [
+            dbc.Col(
+                dbc.Row(
+                    html.B(
+                        html.A(
+                            dbc.NavbarBrand("<"),
+                            href="/join_host_game",
+                        )
+                    ),
+                    justify="center"
+                ),
+                width="auto"
+            ),
+            dbc.Col(
+                dbc.Row(
+                    dbc.NavbarBrand("Join a Game"),
+                    justify="center"
+                )
+            ),
+            dbc.Col(
+                dbc.Row(
+                    html.B(
+                        html.A(
+                            html.I(className="fa fa-user fa-lg", style= {'color':'white'}),
+                        )
+                    ),
+                    justify="center"
+                ),
+                width="auto"
+            ),
+        ],
+        color="dark",
+        dark=True,
+    ),
 
     dbc.Row(
         children=[
@@ -18,86 +51,97 @@ layout = html.Div([
                 children=[
 
                     html.Br(),
-                    
-                    #title
+
+                    # img
                     dbc.Row(
-                        html.H2("Join a game"),
+                        dbc.CardImg(
+                            #src="/assets/images/bananagrams.jpg", 
+                            id="join-img"
+                        ),
+                        justify="center"
                     ),
 
+                    # title
                     dbc.Row(
-                        dcc.Graph(
-                            id='campus_map',
-                            config={
-                                'displayModeBar': False, 
-                                'scrollZoom': True
-                            },
-                            style={
-                                'background': '#000000', 
-                                'height': '35vh',
-                                'width': '90vw'
-                            },
+                        html.H3(
+                            "",#"BANANAGRAMS",
+                            id="join-name"
                         ),
+                        justify="center"
                     ),
 
                     html.Br(),
 
                     dbc.Row(
+                        "",#"Today @ 12:30pm",
+                        id="join-when",
+                        justify="center"
+                    ),
+                    dbc.Row(
                         children=[
-                            dbc.Col(
-                                "In the next: ",
-                                width=3
-                            ),
-                            dbc.Col(
-                                dcc.Slider(
-                                    min=1,
-                                    max=5,
-                                    step=None,
-                                    marks={
-                                        1: '1h',
-                                        2: '6h',
-                                        3: '12h',
-                                        4: '1d',
-                                        5: '2d'
-                                    },
-                                    value=1,
-                                    id="slider_join_game",
-                                )
-                            ),
-                        ]
+                            ""
+                            # html.I(className='fa fa-clock-o fa-sm'),
+                            # " 1h30 . .",
+                            # html.I(className='fa fa-users fa-sm'),
+                            # " 3/5 . .",
+                            # html.I(className='fa fa-signal fa-sm'),
+                            # " 1/5"
+                        ],
+                        id="join-details",
+                        justify="center"
+                    ),
+                    dbc.Row(
+                        "", #"Categories: words",
+                        id="join-category",
+                        justify="center"
                     ),
 
                     html.Br(),
 
                     dbc.Row(
                         dbc.Button(
-                            '+  Start a new game!', 
-                            id="start_game_button",
-                            color="success", 
+                            html.H3("Share with friend"), 
+                            id="share_button",
+                            color="warning", 
+                            size="lg",
                             block=True,
-                            href="/start_game",
+                            #href="/share_join",
                         ),
                     ),
+                    dbc.Modal(
+                        [
+                            dbc.ModalHeader("Share with friend"),
+                            dbc.ModalBody(
+                                children=[
+                                    "Give your friend the link to this",
+                                    html.Br(),
+                                    " game session:",
+                                    html.Br(),
+                                    html.Br(),
+                                    html.A(
+                                        "comeandplay.com/session?id=25722",
+                                        href="http://localhost:8080/join_game?id=2")
+                                ]
+                            ),
+                            dbc.ModalFooter(
+                                dbc.Button("Copy ✂️📋", id="close", className="ml-auto")
+                            ),
+                        ],
+                        size="sm",
+                        id="modal",
+                    ),
+
+                    html.Br(),
 
                     dbc.Row(
-                        dash_table.DataTable(
-                            id='join_games_table',
-                            style_header = {
-                                'display': 'none'
-                            },
-                            style_table={
-                                'width': '100%',
-                                'minWidth': '100%',
-                            },
-                            # css=[{
-                            #     "selector": "table", 
-                            #     "rule": "width: 100%;"
-                            # }],
-                            style_cell={
-                                'textAlign': 'center',
-                            },
-                            #page_size=10,
+                        dbc.Button(
+                            html.H3("Request to join"), 
+                            id="request_button",
+                            color="info", 
+                            size="lg",
+                            block=True,
+                            #href="/request_join?id=1",
                         ),
-                        justify="center"
                     ),
                 ]
             ),
@@ -106,5 +150,8 @@ layout = html.Div([
             ),
         ]
     ),
-])
 
+
+
+
+])

@@ -69,20 +69,15 @@ layout = html.Div([
             ),
             dbc.Col(
                 dbc.Row(
-                    # html.A(
-                    dbc.NavbarBrand("Rent out a Game"),
-                    # href="/large",
-                    # ),
+                    dbc.NavbarBrand("Rent Out a Game"),
                     justify="center"
                 )
             ),
-
             dbc.Col(
                 dbc.Row(
                     html.B(
                         html.A(
-                            dbc.NavbarBrand("👤"),
-                            # html.I(className="fa fa-arrow-left"),
+                            html.I(className="fa fa-user fa-lg", style= {'color':'white'}),
                             # href="/",
                         )
                     ),
