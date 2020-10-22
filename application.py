@@ -197,6 +197,22 @@ def request_join_data(url, search_str, n):
 
 
 @app.callback(
+    Output('modal', 'is_open'),
+    [
+        Input("share_button", "n_clicks"), 
+        Input("close", "n_clicks")
+    ],
+    [
+        State("modal", "is_open")
+    ],
+)
+def share_link(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+
+@app.callback(
     [
         Output('output-image-upload', 'src'),
         Output('request_result', 'is_open'),

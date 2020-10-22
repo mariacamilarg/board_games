@@ -108,6 +108,28 @@ layout = html.Div([
                             #href="/share_join",
                         ),
                     ),
+                    dbc.Modal(
+                        [
+                            dbc.ModalHeader("Share with friend"),
+                            dbc.ModalBody(
+                                children=[
+                                    "Give your friend the link to this",
+                                    html.Br(),
+                                    " game session:",
+                                    html.Br(),
+                                    html.Br(),
+                                    html.A(
+                                        "comeandplay.com/session?id=25722",
+                                        href="http://localhost:8080/join_game?id=2")
+                                ]
+                            ),
+                            dbc.ModalFooter(
+                                dbc.Button("Copy ✂️📋", id="close", className="ml-auto")
+                            ),
+                        ],
+                        size="sm",
+                        id="modal",
+                    ),
 
                     html.Br(),
 
