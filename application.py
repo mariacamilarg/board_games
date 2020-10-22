@@ -577,10 +577,11 @@ def display_info(url, search_str):
     [dash.dependencies.State('sell_game_name', 'value'),
      dash.dependencies.State('sell_game_price', 'value'),
      dash.dependencies.State('sell_game_img', 'value'),
+     dash.dependencies.State('sell_game_desc', 'value'),
      ])
-def update_output(n_clicks, value_name, value_price, value_img):
+def update_output(n_clicks, value_name, value_price, value_img, value_desc):
     if value_name is not None and value_price is not None and value_img is not None:
-        row_contents = [value_name, value_price, "catan.jpg"]
+        row_contents = [value_name, value_price, "catan.jpg", value_desc]
         # Append a list as new line to an old csv file
         manage_csv_rows.append_list_as_row('./assets/csv/buy_sell.csv', row_contents)
 
@@ -597,11 +598,12 @@ def update_output(n_clicks, value_name, value_price, value_img):
     [dash.dependencies.State('rent_game_name', 'value'),
      dash.dependencies.State('rent_game_price', 'value'),
      dash.dependencies.State('rent_game_time', 'value'),
+     dash.dependencies.State('rent_game_desc', 'value'),
      # dash.dependencies.State('rent_game_img', 'value'),
      ])
-def update_output(n_clicks, value_name, value_price, value_time):
+def update_output(n_clicks, value_name, value_price, value_time, value_desc):
     if value_name is not None and value_price is not None and value_time is not None:
-        row_contents = [value_name, value_price, value_time, "catan.jpg"]
+        row_contents = [value_name, value_price, value_time, "catan.jpg", value_desc]
         # Append a list as new line to an old csv file
         manage_csv_rows.append_list_as_row('./assets/csv/rent_rent_out.csv', row_contents)
 
@@ -617,11 +619,12 @@ def update_output(n_clicks, value_name, value_price, value_time):
     [dash.dependencies.Input('exchange_button', 'n_clicks')],
     [dash.dependencies.State('exchange_game_name', 'value'),
      dash.dependencies.State('exchange_game_name2', 'value'),
+     dash.dependencies.State('exchange_game_desc', 'value'),
      # dash.dependencies.State('exchange_game_img', 'value'),
      ])
-def update_output_exchange(n_clicks, value_name, value_name2):
+def update_output_exchange(n_clicks, value_name, value_name2, value_desc):
     if value_name is not None and value_name2 is not None:
-        row_contents = [value_name, value_name2, "catan.jpg"]
+        row_contents = [value_name, value_name2, "catan.jpg", value_desc]
         # Append a list as new line to an old csv file
         manage_csv_rows.append_list_as_row('./assets/csv/exchange.csv', row_contents)
 

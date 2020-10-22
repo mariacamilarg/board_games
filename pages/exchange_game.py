@@ -31,6 +31,15 @@ image_input = dbc.FormGroup(
     ]
 )
 
+
+desc_input = dbc.FormGroup(
+    [
+        dbc.Label("Description ", html_for="exchange_game_desc"),
+        dbc.Input(type="text", id="exchange_game_desc", placeholder="Enter a short description", ),
+
+    ]
+)
+
 layout = html.Div([
 
     dbc.Navbar(
@@ -86,7 +95,7 @@ layout = html.Div([
 
                     html.Br(),
 
-                    dbc.Form([name_input, name2_input, image_input, html.Br(),
+                    dbc.Form([name_input, name2_input, image_input, desc_input, html.Br(),
                               dbc.Button("Exchange the game", id="exchange_button", n_clicks=0, color="primary", block=True), ]),
 
                     html.Div(id='exchange_container-button-basic',
