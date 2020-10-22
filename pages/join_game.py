@@ -118,7 +118,7 @@ layout = html.Div([
                             color="info", 
                             size="lg",
                             block=True,
-                            #href="/share_join",
+                            #href="/request_join?id=1",
                         ),
                     ),
                 ]

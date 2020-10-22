@@ -16,7 +16,7 @@ import csv
 from backend import database
 
 from widgets import context_menu, get_data_from_db, table, campus_map, parse_url, manage_csv_rows
-from pages import web_app, buy_sell_rent, join_host_game, join_game, buy_game, rent_game, contact_renter, contact_exchange, \
+from pages import web_app, buy_sell_rent, join_host_game, join_game, request_join, buy_game, rent_game, contact_renter, contact_exchange, \
 see_exchange_game, contact_seller, sell_game, rent_out_game, exchange_game, games_db
 
 # APP DEFINITION
@@ -81,6 +81,8 @@ def display_page(pathname):
         return contact_exchange.layout
     elif pathname == '/games_db':
         return games_db.layout
+    elif pathname == '/request_join':
+        return request_join.layout
     # elif pathname == '/large':
     #     return large_screen.layout
     else:
@@ -143,7 +145,7 @@ def join_host_game_data(url, in_next_hours):
         Output('join-when', 'children'),
         Output('join-details', 'children'),
         Output('join-category', 'children'),
-        #Output('link_buy', 'href'),
+        Output('request_button', 'href'),
     ],
     [
         Input('url', 'pathname'), 
@@ -164,6 +166,54 @@ def join_game_data(url, search_str):
     game_data = campus_map.get_data_game(db, game_id)
 
     return game_data
+
+
+@app.callback(
+    [
+        Output('join_game_link_request', 'href'),
+        Output('request_info', 'children'),
+        Output('reply_join', 'is_open'),
+        # Output('img_buy_this', 'src'),
+        # Output('link_buy', 'href'),
+    ],
+    [
+        Input('url', 'pathname'), 
+        Input('url', 'search'),
+        Input('interval_request', 'n_intervals')
+    ],
+    [
+
+    ]
+)
+def request_join_data(url, search_str, n):
+    if url != '/request_join':
+        raise dash.exceptions.PreventUpdate()
+    game_id = int(parse_url.parse_url_id(search_str))
+    print(game_id)
+
+    request_data = campus_map.get_data_request(db, game_id, n)
+
+    return request_data
+
+
+@app.callback(
+    [
+        Output('output-image-upload', 'src'),
+        Output('request_result', 'is_open'),
+    ],
+    [
+        Input('upload-image', 'contents')
+    ],
+    [
+        State('upload-image', 'filename'),
+        State('upload-image', 'last_modified')
+    ]
+)
+def update_output(list_of_contents, list_of_names, list_of_dates):
+    if list_of_contents is not None:
+        print(list_of_names)
+        print(f"/assets/images/{list_of_names}")
+        return f"/assets/images/{list_of_names}", True
 
 
 ## PUT DATA IN BUY

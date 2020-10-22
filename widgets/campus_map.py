@@ -42,9 +42,28 @@ def get_data_game(db, game_id):
             f' {game["difficulty"]}/5'
         ]
         category = f'Categories: {game["category"]}'
+        href = f"/request_join?id={game_id}"
 
-        return (img, name, when, details, category)
+        return (img, name, when, details, category, href)
 
+
+def get_data_request(db, game_id, n_interval):
+    
+    df = db.get_join_games_df()
+
+    # filter df
+    df = df[ df["id"] == game_id ]
+    print(df)
+
+    open1 = True if n_interval >= 2 else False
+
+    for i, game in df.iterrows():
+        game_id = game["id"]
+
+        href_back = f"/join_game?id={game_id}"
+        request_info = f'You are requesting to join {game["name"]} for {game["when"]} @ {game["time"]}'
+
+        return (href_back, request_info, open1) 
 
 
 def render_map(df):
