@@ -625,11 +625,8 @@ def update_output_exchange(n_clicks, value_name, value_name2):
         # Append a list as new line to an old csv file
         manage_csv_rows.append_list_as_row('./assets/csv/exchange.csv', row_contents)
 
-        return 'Thank you! We have added the game to the relative section.' \
-               ' The input value was "{}, {}" and the button has been clicked {} times'.format(
-            value_name, value_name2,
-            n_clicks
-        )
+        return 'Thank you! We have added the game to the relative section.'
+
     return " "
 
 
