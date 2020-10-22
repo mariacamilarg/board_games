@@ -16,8 +16,7 @@ import csv
 from backend import database
 
 from widgets import context_menu, get_data_from_db, table, campus_map, parse_url, manage_csv_rows
-from pages import web_app, buy_sell_rent, join_host_game, join_game, request_join, buy_game, rent_game, contact_renter, contact_exchange, \
-see_exchange_game, contact_seller, sell_game, rent_out_game, exchange_game, games_db
+from pages import web_app, buy_sell_rent, join_host_game, join_game, request_join, host_game, buy_game, rent_game, contact_renter, contact_exchange, see_exchange_game, contact_seller, sell_game, rent_out_game, exchange_game, games_db
 
 # APP DEFINITION
 
@@ -59,6 +58,10 @@ def display_page(pathname):
         return join_host_game.layout
     elif pathname == '/join_game':
         return join_game.layout
+    elif pathname == '/request_join':
+        return request_join.layout
+    elif pathname == '/host_game':
+        return host_game.layout
     elif pathname == '/buy_sell_rent':
         return buy_sell_rent.layout
     elif pathname == '/buy_game':
@@ -81,8 +84,6 @@ def display_page(pathname):
         return contact_exchange.layout
     elif pathname == '/games_db':
         return games_db.layout
-    elif pathname == '/request_join':
-        return request_join.layout
     # elif pathname == '/large':
     #     return large_screen.layout
     else:
@@ -194,6 +195,22 @@ def request_join_data(url, search_str, n):
     request_data = campus_map.get_data_request(db, game_id, n)
 
     return request_data
+
+
+@app.callback(
+    Output('modal-2', 'is_open'),
+    [
+        Input("filter-button", "n_clicks"), 
+        Input("close-2", "n_clicks")
+    ],
+    [
+        State("modal-2", "is_open")
+    ],
+)
+def filter(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
 
 
 @app.callback(

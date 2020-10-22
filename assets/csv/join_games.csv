@@ -1,6 +1,6 @@
 id,latitude,longitude,color,factor,name,img,when,time,duration_min,duration_str,next_hours,current_players,max_players,category,difficulty
-1,48.706685,2.166689,#1f9539,3,BANANAGRAMS,"/assets/images/bananagrams.jpg","Today","12:30pm",90,"1h30",3,2,4,"words",2
-2,48.702716,2.177686,#1f9539,3,EXPLODING KITTENS,"/assets/images/kittens.jpg","Today","5:00pm",30,"0h30",6,3,6,"cards",2
+1,48.706685,2.166689,#1f9539,3,BANANAGRAMS,"/assets/images/bananagrams.jpg","Today","11:30am",90,"1h30",3,2,4,"words",2
+2,48.702716,2.177686,#1f9539,3,EXPLODING KITTENS,"/assets/images/kittens.jpg","Today","1:00pm",30,"0h30",6,3,6,"cards",2
 3,48.703000,2.160000,#1f9539,3,CARCASSONNE,"/assets/images/carcassonne.jpg","Tomorrow","9:00am",60,"1h00",12,3,5,"strategy",3
 4,48.708000,2.180000,#1f9539,3,CODENAMES,"/assets/images/codenames.jpg","Tomorrow","11:30am",90,"1h30",24,5,8,"words",1
-5,48.704000,2.170000,#1f9539,3,SETTLERS OF CATAN,"/assets/images/catan.jpg","Tomorrow","3:30pm",90,"1h30",24,3,5,"strategy",4
+5,48.704000,2.170000,#1f9539,3,SETTLERS OF CATAN,"/assets/images/catan.jpg","Tomorrow","3:30pm",90,"1h30",32,3,5,"strategy",4

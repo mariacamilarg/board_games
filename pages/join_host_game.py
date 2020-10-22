@@ -101,12 +101,93 @@ layout = html.Div([
                                 )
                             ),
                             dbc.Col(
-                                html.I(
-                                    id='filter-button', 
-                                    className='fa fa-filter fa-lg',
-                                    #**{'aria-hidden': 'true'}
+                                dbc.Button(
+                                    html.I(
+                                        className='fa fa-filter fa-lg',
+                                    ),
+                                    id='filter-button',
                                 ),
-                                width=1
+                                width=2
+                            ),
+                            dbc.Modal(
+                                [
+                                    dbc.ModalHeader("Filter game sessions"),
+                                    dbc.ModalBody(
+                                        children=[
+                                            "Categories",
+                                            html.Br(),
+                                            dcc.Dropdown(
+                                                options=[
+                                                    {'label': 'cards', 'value': 'cards'},
+                                                    {'label': 'strategy', 'value': 'strategy'},
+                                                    {'label': 'words', 'value': 'words'}
+                                                ],
+                                                value=['cards', 'strategy', 'words'],
+                                                multi=True
+                                            ),
+                                            html.Br(),
+                                            "Duration range (in minutes)",
+                                            html.Br(),
+                                            dcc.RangeSlider(
+                                                id='my-range-slider',
+                                                min=0,
+                                                max=120,
+                                                step=30,
+                                                value=[30, 90],
+                                                marks={
+                                                    0: {'label': '0m'},
+                                                    30: {'label': '30m'},
+                                                    60: {'label': '60m'},
+                                                    90: {'label': '90m'},
+                                                    120: {'label': '120m'}
+                                                }
+                                            ),
+                                            html.Br(),
+                                            "Difficulty (1 = easy, 5 = hard)",
+                                            html.Br(),
+                                            dcc.Checklist(
+                                                options=[
+                                                    {'label': '. 1 .', 'value': 1},
+                                                    {'label': '. 2 .', 'value': 2},
+                                                    {'label': '. 3 .', 'value': 3},
+                                                    {'label': '. 4 .', 'value': 4},
+                                                    {'label': '. 5 .', 'value': 5},
+                                                ],
+                                                value=[1,2,3,4],
+                                                labelStyle={'display': 'inline-block'}
+                                            ),
+                                            html.Br(),
+                                            "Number of players (maximum)",
+                                            html.Br(),
+                                            dcc.RangeSlider(
+                                                id='my-range-slider',
+                                                min=1,
+                                                max=12,
+                                                step=1,
+                                                value=[4, 8],
+                                                marks={
+                                                    4: {'label': '4p'},
+                                                    8: {'label': '8p'},
+                                                    12: {'label': '12p'},
+                                                    1: {'label': '1p'},
+                                                    2: {'label': '2p'},
+                                                    3: {'label': '3p'},
+                                                    5: {'label': '5p'},
+                                                    6: {'label': '6p'},
+                                                    7: {'label': '7p'},
+                                                    9: {'label': '9p'},
+                                                    10: {'label': '10p'},
+                                                    11: {'label': '11p'},
+                                                }
+                                            ),
+                                        ]
+                                    ),
+                                    dbc.ModalFooter(
+                                        dbc.Button("Filter", id="close-2", className="ml-auto")
+                                    ),
+                                ],
+                                size="sm",
+                                id="modal-2",
                             ),
                         ]
                     ),
